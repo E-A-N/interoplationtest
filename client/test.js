@@ -9,7 +9,8 @@ window.onload = () => {
     can.width  = 500;
 
     const count1 = ctx.fillText("Hey", can.width/2, can.height/2);
-
+    const c1x = Math.floor(Math.random() * can.width);
+    const c1y = Math.floor(Math.random() * can.height);
 
 
     gameArea.appendChild(can)
@@ -17,6 +18,6 @@ window.onload = () => {
     setInterval(function(){
         ctx.clearRect(0, 0, can.width, can.height);
         let tex = "Hey, num is: " + num++;
-        const count1 = ctx.fillText(tex, can.width * 0.25, can.height * 0.25);
+        const count1 = ctx.fillText(tex, c1x, c1y);
     },500)
 }
