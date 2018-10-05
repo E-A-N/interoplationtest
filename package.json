@@ -1,7 +1,7 @@
 {
     "name": "interpolationtest",
     "version": "1.0.0",
-    "description": "A simple app to test client side prediction",
+    "description": "A simple app to test server side prediction",
     "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
