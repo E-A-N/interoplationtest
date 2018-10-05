@@ -12,9 +12,7 @@ window.onload = () => {
     const c1x = Math.floor(Math.random() * can.width);
     const c1y = Math.floor(Math.random() * can.height);
 
-
     gameArea.appendChild(can)
-
     setInterval(function(){
         ctx.clearRect(0, 0, can.width, can.height);
         let tex = "Hey, num is: " + num++;
@@ -24,6 +22,8 @@ window.onload = () => {
 
 const ready = () => {
     const msg = document.getElementById("msgWin");
-    msg.innerHTML += "You\'re connecting!";
+    msg.innerHTML = "You\'re connecting!";
     console.log("Player is readyyyy!!");
+
+    //client.emit("ready", {id:77})
 };

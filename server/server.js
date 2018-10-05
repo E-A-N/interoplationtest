@@ -11,5 +11,5 @@ module.exports = function(io){
 
     io.on("ready", (socket) => {
         io.sockets.isReady = socket.isReady;
-    })
+    });
 }
