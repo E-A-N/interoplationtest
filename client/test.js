@@ -19,5 +19,11 @@ window.onload = () => {
         ctx.clearRect(0, 0, can.width, can.height);
         let tex = "Hey, num is: " + num++;
         const count1 = ctx.fillText(tex, c1x, c1y);
-    },500)
-}
+    },500);
+};
+
+const ready = () => {
+    const msg = document.getElementById("msgWin");
+    msg.innerHTML += "You\'re connecting!";
+    console.log("Player is readyyyy!!");
+};
