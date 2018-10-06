@@ -1,5 +1,6 @@
 
 window.onload = () => {
+    socket = io("http://127.0.0.1:7777");
     const msg = document.getElementById("msgWin");
     const gameArea = document.getElementById("gameContainer");
     const can = document.createElement("canvas");
@@ -25,5 +26,5 @@ const ready = () => {
     msg.innerHTML = "You\'re connecting!";
     console.log("Player is readyyyy!!");
 
-    //client.emit("ready", {id:77})
+    socket.emit("ready", {id:77})
 };
