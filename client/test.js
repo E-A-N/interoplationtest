@@ -1,6 +1,23 @@
+const cliSetup = ()) => {
+    socket = io("http://127.0.0.1:7777");
+    clients = {};
+    socket.on("joinGame", (data) => {
+        Object.keys(data).forEach((cli) => {
+            clients[cli.id] = cli;
+        });
+    }
+}
+
+const ready = () => {
+    const msg = document.getElementById("msgWin");
+    msg.innerHTML = "You\'re connecting!";
+    console.log("Player is readyyyy!!");
+
+    socket.emit("ready", {id:77})
+};
 
 window.onload = () => {
-    socket = io("http://127.0.0.1:7777");
+
     const msg = document.getElementById("msgWin");
     const gameArea = document.getElementById("gameContainer");
     const can = document.createElement("canvas");
@@ -18,13 +35,8 @@ window.onload = () => {
         ctx.clearRect(0, 0, can.width, can.height);
         let tex = "Hey, num is: " + num++;
         const count1 = ctx.fillText(tex, c1x, c1y);
+
+
+
     },500);
-};
-
-const ready = () => {
-    const msg = document.getElementById("msgWin");
-    msg.innerHTML = "You\'re connecting!";
-    console.log("Player is readyyyy!!");
-
-    socket.emit("ready", {id:77})
 };
