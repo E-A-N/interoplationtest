@@ -1,14 +1,16 @@
-const cliSetup = ()) => {
+var socket;
+const cliSetup = () => {
     socket = io("http://127.0.0.1:7777");
     clients = {};
     socket.on("joinGame", (data) => {
         Object.keys(data).forEach((cli) => {
             clients[cli.id] = cli;
         });
-    }
-}
+    });
+};
 
 const ready = () => {
+    cliSetup();
     const msg = document.getElementById("msgWin");
     msg.innerHTML = "You\'re connecting!";
     console.log("Player is readyyyy!!");

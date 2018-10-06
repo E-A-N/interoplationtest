@@ -6,8 +6,6 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-
-
 //use path object to make server platform agnostic
 var path	= require('path');
 

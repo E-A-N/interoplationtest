@@ -24,7 +24,7 @@ module.exports = (soc, server) => {
     //eanDebug check if disconnect or disconnecting is proper built in api
     soc.on("disconnect", () => {
         console.log(soc.id + " has disconnected!!");
-        if (server.sockets[soc.id]){
+        if (server._sockets[soc.id]){
             delete server.sockets[soc.id];
         //find a way to make server remove the player from all other clients (sockets) eanDebug
         }
