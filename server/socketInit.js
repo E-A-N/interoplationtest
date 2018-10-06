@@ -1,4 +1,4 @@
-module.exports = (soc, server, config) => {
+module.exports = (soc, server) => {
     soc.init = false;
     soc.game = {};
 

@@ -6,11 +6,13 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+
+
 //use path object to make server platform agnostic
 var path	= require('path');
 
 //retrieve main server logic
-var servRoute = path.join(__dirname,'server','webSockets');
+var servRoute = path.join(__dirname,'server','websockets');
 servRoute = path.normalize(servRoute);
 var webSockets = require(servRoute)(io);
 
