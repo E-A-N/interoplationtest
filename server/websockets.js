@@ -3,7 +3,7 @@ module.exports = function(io) {
     const socketInit = require("./socketInit"); //eanDebug
     io._game = {count: 0};
     const updateRate = 1000; //millesecond
-
+    //const timerLogic = require("timerCount")(io);
     //When a new user connects
     io.on("connection", (socket) => {
         console.log("New connection!!", socket.id);
