@@ -12,16 +12,25 @@ module.exports = function(io) {
     });
 
     io.on("joinGame", (socket) => {
-        io._sockets[socket.id].isReady = socket.isReady;
+        var soc  = io._sockets[socket.id]
+        soc.isReady = true;
+        soc.x = 200;
+        soc.y = 200;
+
     });
 
-    io.on("checkIn" (socket) => {
+    io.on("checkIn", (socket) => {
         io._sockets[socket.id] = socket;
     });
 
-    // setInterval(() => {
-    //     io.emit("gameUpdate", io._sockets);
-    // }, updateRate);
+    setInterval(() => {
+        io._sockets = io._sockets.map( (s) => {
+            s.x = 200;
+            s.y = 200;
+            s.count = 0;
+        })
+        io.emit("gameUpdate", io._sockets);
+    }, updateRate);
 
 
 }

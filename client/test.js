@@ -19,7 +19,7 @@ const ready = () => {
 };
 
 window.onload = () => {
-
+    cliSetup();
     const msg = document.getElementById("msgWin");
     const gameArea = document.getElementById("gameContainer");
     const can = document.createElement("canvas");
@@ -35,10 +35,10 @@ window.onload = () => {
     gameArea.appendChild(can);
     socket.on("gameUpdate", (data) => {
         console.log(data);
-        // data.forEach((i) => {
-        //     var cli = clients[i.id];
-        //     ctx.fillText(cli.count, cli.x, cli.y);
-        // })
+        data.forEach((i) => {
+            var cli = clients[i.id];
+            ctx.fillText(cli.count, cli.x, cli.y);
+        });
     })
     // setInterval(function(){
     //     ctx.clearRect(0, 0, can.width, can.height);
