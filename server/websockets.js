@@ -1,9 +1,10 @@
 module.exports = function(io) {
-    io = require("timerCount")(io);
+    io = require("./timerCount")(io);
     io._sockets = {}; //eanDebug setup socket io node modules
     const socketInit = require("./socketInit"); //eanDebug
     io._game = {count: 0};
     const updateRate = 1000; //millesecond
+
     //When a new user connects
     io.on("connection", (socket) => {
         console.log("New connection!!", socket.id);
@@ -23,16 +24,17 @@ module.exports = function(io) {
         io._sockets[socket.id] = socket;
     });
 
+    //eanDebug decide the best way to start and store gameloopo in a variable
+    io._gameLoopStart = (fps) => {
+        return setInterval(() => {
+            io._sockets = io._sockets.map( (s) => {
+                s.x = 200;
+                s.y = 200;
+                s.count = 0;
+            })
+            io.emit("gameUpdate", io._sockets);
+        }, fps);
+    };
 
-
-    setInterval(() => {
-        io._sockets = io._sockets.map( (s) => {
-            s.x = 200;
-            s.y = 200;
-            s.count = 0;
-        })
-        io.emit("gameUpdate", io._sockets);
-    }, updateRate);
-
-
+    //io._startGameLoop(updateRate);
 }

@@ -5,17 +5,13 @@ module.exports = (server) => {
         socket.count = 0;
     };
 
-    server._updateTimer = (step, sockets) => {
+    server._updateTimer = (milli, sockets) => {
         const sLength = Object.keys(sockets).length;
-        for (let t in sockets; t < sLength; t++){
+        for (let t in sockets){
             var soc = sockets[t];
-            soc.count += step;
+            soc.count += milli;
         }
     };
-
-    server._sendTime = () => {
-        server.emit("gameUpdate", server._sockets);
-    }
 
     return server;
 }
