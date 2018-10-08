@@ -24,17 +24,25 @@ module.exports = function(io) {
         io._sockets[socket.id] = socket;
     });
 
+    io._sockets["eID"] = {
+        id: "eID",
+        x: 0,
+        y: 0,
+        count: 0
+    }
+
     //eanDebug decide the best way to start and store gameloopo in a variable
-    io._gameLoopStart = (fps) => {
+    io._startGameLoop = (fps) => {
         return setInterval(() => {
-            io._sockets = io._sockets.map( (s) => {
-                s.x = 200;
-                s.y = 200;
-                s.count = 0;
-            })
-            io.emit("gameUpdate", io._sockets);
+            io._updateTimer(10, io._sockets);
+            // io._sockets = io._sockets.map( (s) => {
+            //     s.x = 200;
+            //     s.y = 200;
+            //     s.count = 0;
+            // })
+            //io.emit("gameUpdate", io._sockets);
         }, fps);
     };
 
-    //io._startGameLoop(updateRate);
+    io._startGameLoop(updateRate);
 }

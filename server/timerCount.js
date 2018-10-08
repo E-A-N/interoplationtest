@@ -5,12 +5,13 @@ module.exports = (server) => {
         socket.count = 0;
     };
 
-    server._updateTimer = (milli, sockets) => {
+    server._updateTimer = (unit, sockets) => {
         const sLength = Object.keys(sockets).length;
         for (let t in sockets){
             var soc = sockets[t];
-            soc.count += milli;
+            soc.count += unit
         }
+        console.log(sockets);
     };
 
     return server;
