@@ -1,9 +1,9 @@
 module.exports = function(io) {
+    io = require("timerCount")(io);
     io._sockets = {}; //eanDebug setup socket io node modules
     const socketInit = require("./socketInit"); //eanDebug
     io._game = {count: 0};
     const updateRate = 1000; //millesecond
-    //const timerLogic = require("timerCount")(io);
     //When a new user connects
     io.on("connection", (socket) => {
         console.log("New connection!!", socket.id);
@@ -22,6 +22,8 @@ module.exports = function(io) {
     io.on("checkIn", (socket) => {
         io._sockets[socket.id] = socket;
     });
+
+
 
     setInterval(() => {
         io._sockets = io._sockets.map( (s) => {
