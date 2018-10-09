@@ -1,11 +1,13 @@
 module.exports = (server) => {
-    server._millisecond = 100;
-    server._second = 1000;
+    server._rootTime = 0;
     server._initTimer = (socket) => {
         socket.count = 0;
+        socket.stamp = server._rootTime;
+        return socket;
     };
 
     server._updateTimer = (unit, sockets) => {
+        server._rootTime += unit;
         const sLength = Object.keys(sockets).length;
         for (let t in sockets){
             var soc = sockets[t];

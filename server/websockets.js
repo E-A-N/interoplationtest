@@ -32,16 +32,20 @@ module.exports = function(io) {
     }
 
     //eanDebug decide the best way to start and store gameloopo in a variable
-    io._startGameLoop = (fps) => {
+    /**
+     * @param {number} - ups: Updates Per Second
+     * @returns {object} - interval
+    */
+    io._startGameLoop = (ups) => {
         return setInterval(() => {
-            io._updateTimer(10, io._sockets);
+            io._updateTimer(ups, io._sockets);
             // io._sockets = io._sockets.map( (s) => {
             //     s.x = 200;
             //     s.y = 200;
             //     s.count = 0;
             // })
             //io.emit("gameUpdate", io._sockets);
-        }, fps);
+        }, ups);
     };
 
     io._startGameLoop(updateRate);
