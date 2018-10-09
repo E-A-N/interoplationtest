@@ -1,5 +1,6 @@
 module.exports = (server) => {
     server._rootTime = 0;
+    server._timeSignal = 100; //1/10 millesecond
     server._initTimer = (socket) => {
         socket.count = 0;
         socket.timeOrigin = server._rootTime; //label birth time of socket
@@ -13,7 +14,11 @@ module.exports = (server) => {
             var soc = sockets[t];
             soc.count += unit
         }
-        console.log(sockets);
+        if (server._rootTime % 1000 === 0) {
+            console.log(sockets);
+        };
+        // var
+        // if (server.r)
     };
 
     return server;

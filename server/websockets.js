@@ -3,7 +3,7 @@ module.exports = function(io) {
     io._sockets = {}; //eanDebug setup socket io node modules
     const socketInit = require("./socketInit"); //eanDebug
     io._game = {count: 0};
-    const updateRate = 500; //millesecond
+    const updateRate = 1; //millesecond
 
     //When a new user connects
     io.on("connection", (socket) => {
