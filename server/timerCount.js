@@ -2,7 +2,7 @@ module.exports = (server) => {
     server._rootTime = 0;
     server._initTimer = (socket) => {
         socket.count = 0;
-        socket.stamp = server._rootTime;
+        socket.timeOrigin = server._rootTime; //label birth time of socket
         return socket;
     };
 
