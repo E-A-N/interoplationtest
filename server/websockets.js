@@ -13,7 +13,7 @@ module.exports = function(io) {
     });
 
     io.on("joinGame", (socket) => {
-        var soc  = io._sockets[socket.id];
+        let soc  = io._sockets[socket.id];
         io._initTimer(soc);
         soc.isReady = true;
         soc.x = 200;
@@ -31,7 +31,19 @@ module.exports = function(io) {
         count: 0
     }
 
-    
+    /**
+    * This method updates a chosen socket with the state of the other sockets
+    * @param {object} soc - The chosen socket to updates
+    * @param {object} socList - Associative array containing relevant sockets
+    */
+    io._syncSocket = function(soc, socList) {
+        for (let s in socList){
+            let update = socList[s];
+            soc.sockets[update.id] = update;
+        }
+
+        return soc;
+    }
 
     //eanDebug decide the best way to start and store gameloopo in a variable
     /**
