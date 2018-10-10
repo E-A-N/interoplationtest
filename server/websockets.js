@@ -1,5 +1,6 @@
 module.exports = function(io) {
     io = require("./timerCount")(io);
+    io = require("./dummySocket")(io);
     io._sockets = {}; //eanDebug setup socket io node modules
     const socketInit = require("./socketInit"); //eanDebug
     io._game = {count: 0};
@@ -24,13 +25,6 @@ module.exports = function(io) {
         io._sockets[socket.id] = socket;
     });
 
-    io._sockets["eID"] = {
-        id: "eID",
-        x: 0,
-        y: 0,
-        count: 0
-    }
-
     /**
     * This method updates a chosen socket with the state of the other sockets
     * @param {object} soc - The chosen socket to updates
@@ -45,7 +39,9 @@ module.exports = function(io) {
         return soc;
     }
 
-    //eanDebug decide the best way to start and store gameloopo in a variable
+    io._createDummy();
+    io._createDummy();
+    //eanDebug decide the best way to start and store gameloop in a variable
     /**
      * @param {number} - ups: Updates Per Second
      * @returns {object} - interval

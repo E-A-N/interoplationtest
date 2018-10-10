@@ -9,7 +9,6 @@ module.exports = (server) => {
 
     server._updateTimer = (unit, sockets) => {
         server._rootTime += unit;
-        const sLength = Object.keys(sockets).length;
         for (let t in sockets){
             var soc = sockets[t];
             soc.count += unit
