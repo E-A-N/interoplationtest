@@ -17,8 +17,10 @@ module.exports = (server) => {
         if (server._rootTime % 1000 === 0) {
             console.log(sockets);
         };
-        // var
-        // if (server.r)
+
+        // if (server._rootTime % 100 === 0){
+        //     server._sendTimeData(server._rootTime);
+        // }
     };
 
     return server;
