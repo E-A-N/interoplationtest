@@ -5,7 +5,6 @@ module.exports = (server) => {
         //create fake id
         soc.id = Math.random().toString();
         soc.game = {
-            id:Math.random().toString(),
             x: 0,
             y: 0,
             sockets: [],

@@ -5,7 +5,7 @@ module.exports = (server) => {
     server._initTimer = (socket) => {
         socket.game.count = 0;
         socket.game.timeOrigin = server._rootTime; //label birth time of socket
-        console.log(socket.game.id, "timer has been inited at:", socket.game.timeOrigin)
+        console.log(socket.id, "timer has been inited at:", socket.game.timeOrigin)
         return socket;
     };
 
@@ -18,8 +18,20 @@ module.exports = (server) => {
             soc.game.count += unit
         }
         if (intervalCondition) {
-            console.log(sockets);
-            //server.emit("test!",sockets);
+            let dataToSend = [];
+            for(let s in sockets){
+                let data   = [];
+                let soc    = sockets[s];
+                data.id    = soc.id
+                data.x     = soc.game.x;
+                data.y     = soc.game.y;
+                data.count = soc.game.count;
+                data.timeOrigin = soc.game.timeOrigin;
+                dataToSend.push(data);
+            }
+            //console.log(sockets);
+            console.log(dataToSend);
+            //server.emit("test!", dataToSend);
         };
 
         // if (server._rootTime % 100 === 0){
