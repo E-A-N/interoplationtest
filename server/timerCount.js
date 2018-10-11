@@ -29,8 +29,6 @@ module.exports = (server) => {
                 data.timeOrigin = soc.game.timeOrigin;
                 dataToSend.push(data);
             }
-            //console.log(sockets);
-            //dataToSend = JSON.stringify(dataToSend);
             console.log(dataToSend);
             server.emit("test!", dataToSend);
         };

@@ -6,7 +6,7 @@
 const sync =  (soc, socList) => {
     for (let s in socList){
         let update = socList[s];
-        soc.game.sockets[update.id] = update;
+        soc.sockets[update.id] = update;
     }
     return soc;
 }

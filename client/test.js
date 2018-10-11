@@ -42,6 +42,10 @@ window.onload = () => {
     });
 
     socket.on("test!", (data) => {
+        data.forEach((i) => {
+            var cli = clients[i.id];
+            ctx.fillText(cli.count, cli.x, cli.y);
+        });
         console.log("data recieved!!");
         console.log(data);
     });
