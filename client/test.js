@@ -3,8 +3,8 @@ const cliSetup = function() {
     socket = io("http://127.0.0.1:7777");
     clients = {};
     socket.on("joinGame", (data) => {
-        Object.keys(data).forEach((cli) => {
-            clients[cli.id] = cli;
+        data.forEach( s =>  {
+            clients[s.id] = s;
         });
     });
 };
@@ -17,6 +17,16 @@ const ready = () => {
 
     socket.emit("joinGame", {id:77})
 };
+
+const renderClients = (clients, can, ctx) => {
+    for (let cli in clients){
+        var name = cli.id;
+        var x = cli.x * can.width;
+        var y = cli.y * can.height;
+        ctx.fillText(name, x, y - 15);
+        ctx.fillText(cli.count, x, y);
+    }
+}
 
 window.onload = () => {
     cliSetup();
@@ -43,16 +53,16 @@ window.onload = () => {
 
     socket.on("test!", (data) => {
         data.forEach((i) => {
-            var cli = clients[i.id];
-            ctx.fillText(cli.count, cli.x, cli.y);
+            clients[i.id] = i;
         });
         console.log("data recieved!!");
         console.log(data);
     });
-    // setInterval(function(){
-    //     ctx.clearRect(0, 0, can.width, can.height);
-    //     let tex = "Hey, num is: " + num++;
-    //     const count1 = ctx.fillText(tex, c1x, c1y);
-    //
-    // },500);
-};
+
+
+    setInterval(function(){
+        ctx.clearRect(0, 0, can.width, can.height);
+        renderClients(clients, can, ctx);
+
+    },100);
+}
