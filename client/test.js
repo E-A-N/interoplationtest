@@ -1,15 +1,11 @@
 socket = null;
 const cliSetup = function() {
     socket = io("http://127.0.0.1:7777");
-    clients = {};
-    socket.on("joinGame", (data) => {
-        data.forEach( s =>  {
-            clients[s.id] = s;
-        });
-    });
+    socket._clients = {};
+    return socket
 };
 
-const ready = () => {
+const ready = (socket) => {
     cliSetup();
     const msg = document.getElementById("msgWin");
     msg.innerHTML = "You\'re connecting!";
@@ -18,7 +14,8 @@ const ready = () => {
     socket.emit("joinGame", {id:77})
 };
 
-const renderClients = (clients, can, ctx) => {
+const renderClients = (socket, can, ctx) => {
+    var clients = socket._clients;
     for (let cli in clients){
         var name = cli.id;
         var x = cli.x * can.width;
@@ -28,8 +25,14 @@ const renderClients = (clients, can, ctx) => {
     }
 }
 
+const gameStart = (socket, can, ctx) => {
+    ctx.clearRect(0, 0, can.width, can.height);
+    renderClients(socket, can, ctx);
+};
+
 window.onload = () => {
-    cliSetup();
+    var socket = cliSetup();
+
     const msg = document.getElementById("msgWin");
     const gameArea = document.getElementById("gameContainer");
     const can = document.createElement("canvas");
@@ -38,18 +41,7 @@ window.onload = () => {
     can.height = 500;
     can.width  = 500;
 
-    const count1 = ctx.fillText("Hey", can.width/2, can.height/2);
-    const c1x = Math.floor(Math.random() * can.width);
-    const c1y = Math.floor(Math.random() * can.height);
-
     gameArea.appendChild(can);
-    socket.on("gameUpdate", (data) => {
-        console.log(data);
-        data.forEach((i) => {
-            var cli = clients[i.id];
-            ctx.fillText(cli.count, cli.x, cli.y);
-        });
-    });
 
     socket.on("test!", (data) => {
         data.forEach((i) => {
@@ -60,13 +52,12 @@ window.onload = () => {
         console.log(data);
     });
 
-
-    setInterval(function(){
-        let connectionIsReady = clients[socket.id].init
-        if (connectionIsReady) {
-            ctx.clearRect(0, 0, can.width, can.height);
-            renderClients(clients, can, ctx);
-        }
-
-    },100);
+    socket.on("gameStart" (data) => {
+        setInterval(function(){
+            let connectionIsReady = clients[socket.id].init
+            if (connectionIsReady) {
+                gameStart(socket, can, ctx);
+            }
+        },100);
+    });
 }
