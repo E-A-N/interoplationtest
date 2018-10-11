@@ -54,6 +54,7 @@ window.onload = () => {
     socket.on("test!", (data) => {
         data.forEach((i) => {
             clients[i.id] = i;
+            console.log(i);
         });
         console.log("data recieved!!");
         console.log(data);
@@ -61,8 +62,11 @@ window.onload = () => {
 
 
     setInterval(function(){
-        ctx.clearRect(0, 0, can.width, can.height);
-        renderClients(clients, can, ctx);
+        let connectionIsReady = clients[socket.id].init
+        if (connectionIsReady) {
+            ctx.clearRect(0, 0, can.width, can.height);
+            renderClients(clients, can, ctx);
+        }
 
     },100);
 }

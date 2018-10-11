@@ -27,6 +27,7 @@ module.exports = (server) => {
                 data.y     = soc.game.y;
                 data.count = soc.game.count;
                 data.timeOrigin = soc.game.timeOrigin;
+                data.init  = soc.game.init;
                 dataToSend.push(data);
             }
             console.log(dataToSend);
