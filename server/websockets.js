@@ -6,38 +6,14 @@ module.exports = function(io) {
     io._game = {count: 0};
     const updateRate = 1; //millesecond
 
+    const onConnection = require("./serverActions/onConnection")(io);
+    const onJoinGame   = require("./serverActions/onJoinGame")(io);
+    const syncSocket   = require("./serverActions/syncSocket")
     //When a new user connects
-    io.on("connection", (socket) => {
-        console.log("New connection!!", socket.id);
-        socket = socketInit(socket, io); //eanDebug
-        io._sockets[socket.id] = socket;
-    });
+    io.on("connection", onConnection);
 
-    io.on("joinGame", (socket) => {
-        let soc  = io._sockets[socket.id];
-        io._initTimer(soc);
-        soc.isReady = true;
-        soc.x = 200;
-        soc.y = 200;
-    });
-
-    io.on("checkIn", (socket) => {
-        io._sockets[socket.id] = socket;
-    });
-
-    /**
-    * This method updates a chosen socket with the state of the other sockets
-    * @param {object} soc - The chosen socket to updates
-    * @param {object} socList - Associative array containing relevant sockets
-    */
-    io._syncSocket = function(soc, socList) {
-        for (let s in socList){
-            let update = socList[s];
-            soc.sockets[update.id] = update;
-        }
-
-        return soc;
-    }
+    //When user is ready to join the game
+    io.on("joinGame", onJoinGame);
 
     io._createDummy();
     io._createDummy();
