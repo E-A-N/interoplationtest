@@ -30,8 +30,9 @@ module.exports = (server) => {
                 dataToSend.push(data);
             }
             //console.log(sockets);
+            //dataToSend = JSON.stringify(dataToSend);
             console.log(dataToSend);
-            //server.emit("test!", dataToSend);
+            server.emit("test!", dataToSend);
         };
 
         // if (server._rootTime % 100 === 0){
