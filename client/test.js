@@ -2,7 +2,7 @@ socket = null;
 const cliSetup = function() {
     socket = io("http://127.0.0.1:7777");
     socket._clients = {};
-    return socket
+    return socket;
 };
 
 const ready = (socket) => {
@@ -43,7 +43,7 @@ window.onload = () => {
 
     gameArea.appendChild(can);
 
-    socket.on("test!", (data) => {
+    socket.on("update", (data) => {
         data.forEach((i) => {
             clients[i.id] = i;
             console.log(i);

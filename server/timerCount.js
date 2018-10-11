@@ -31,7 +31,7 @@ module.exports = (server) => {
                 dataToSend.push(data);
             }
             console.log(dataToSend);
-            server.emit("test!", dataToSend);
+            server.emit("update", dataToSend);
         };
 
         // if (server._rootTime % 100 === 0){
