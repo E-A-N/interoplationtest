@@ -2,11 +2,11 @@ module.exports = function(io) {
     io = require("./timerCount")(io);
     io = require("./dummySocket")(io);
     io._sockets = {}; //eanDebug setup socket io node modules
-    const socketInit = require("./socketInit"); //eanDebug
     io._game = {count: 0};
     const updateRate = 1; //millesecond
 
     const onConnection = require("./serverActions/onConnection")(io);
+    //const clientInit   = require("./serverActions/clientInit")(io);
     const onJoinGame   = require("./serverActions/onJoinGame")(io);
     const syncSocket   = require("./serverActions/syncSocket");
 
@@ -16,8 +16,8 @@ module.exports = function(io) {
     //When user is ready to join the game
     io.on("joinGame", onJoinGame);
 
-    io._createDummy();
-    io._createDummy();
+    io._createDummy(onConnection); //
+    //io._createDummy();
     //eanDebug decide the best way to start and store gameloop in a variable
     /**
      * @param {number} - ups: Updates Per Second

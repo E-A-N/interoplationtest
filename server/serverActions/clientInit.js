@@ -1,4 +1,4 @@
-module.exports = (soc, server) => {
+module.exports = (server, soc) => {
     soc.init = false;
     soc.game = {};
 
@@ -9,12 +9,14 @@ module.exports = (soc, server) => {
 
     soc.on("join_game", (data) => {
         if (!soc.init){
-            soc.game.type = data.type;
-            soc.game.x = 250;
-            soc.game.y = 250;
-            soc.game.counter = 0;
-            soc.join("eanDebug");
-            soc.emit("playerJoined");
+            soc.type = data.type;
+            soc.x = 0;
+            soc.y = 0;
+            soc.count = 0;
+            soc.sockets = [];
+            soc.init = true;
+            //soc.join("eanDebug");
+            //soc.emit("playerJoined");
         }
         else {
             console.log(soc.username, "is already in the game!");
