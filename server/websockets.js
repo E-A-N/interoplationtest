@@ -8,7 +8,8 @@ module.exports = function(io) {
 
     const onConnection = require("./serverActions/onConnection")(io);
     const onJoinGame   = require("./serverActions/onJoinGame")(io);
-    const syncSocket   = require("./serverActions/syncSocket")
+    const syncSocket   = require("./serverActions/syncSocket");
+
     //When a new user connects
     io.on("connection", onConnection);
 
