@@ -1,11 +1,13 @@
 module.exports = (server) => {
 
     server._createDummy = function(call){
-        const soc = {
-            id: Math.random().toString(),
+        const soc = {};
+        //create fake id
+        soc.id = Math.random().toString();
+        soc.game = {
+            id:Math.random().toString(),
             x: 0,
             y: 0,
-            count: 0,
             sockets: [],
             init: true,
             isDummy: true

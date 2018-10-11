@@ -6,7 +6,6 @@ module.exports = function(io) {
     const updateRate = 1; //millesecond
 
     const onConnection = require("./serverActions/onConnection")(io);
-    //const clientInit   = require("./serverActions/clientInit")(io);
     const onJoinGame   = require("./serverActions/onJoinGame")(io);
     const syncSocket   = require("./serverActions/syncSocket");
 
@@ -16,8 +15,8 @@ module.exports = function(io) {
     //When user is ready to join the game
     io.on("joinGame", onJoinGame);
 
-    io._createDummy(onConnection); //
-    //io._createDummy();
+    io._createDummy(onConnection);
+    //io._createDummy(onConnection);
     //eanDebug decide the best way to start and store gameloop in a variable
     /**
      * @param {number} - ups: Updates Per Second
@@ -26,6 +25,10 @@ module.exports = function(io) {
     io._startGameLoop = (ups) => {
         return setInterval(() => {
             io._updateTimer(ups, io._sockets);
+            for (let s in io._sockets) {
+                let soc = io._sockets[s];
+                syncSocket(soc, io._sockets);
+            }
             //io.emit("gameUpdate", io._sockets);
         }, ups);
     };
