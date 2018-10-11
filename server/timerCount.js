@@ -20,7 +20,7 @@ module.exports = (server) => {
         if (intervalCondition) {
             let dataToSend = [];
             for(let s in sockets){
-                let data   = [];
+                let data   = {};
                 let soc    = sockets[s];
                 data.id    = soc.id
                 data.x     = soc.game.x;

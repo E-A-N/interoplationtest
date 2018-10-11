@@ -44,7 +44,7 @@ window.onload = () => {
     socket.on("test!", (data) => {
         console.log("data recieved!!");
         console.log(data);
-    })
+    });
     // setInterval(function(){
     //     ctx.clearRect(0, 0, can.width, can.height);
     //     let tex = "Hey, num is: " + num++;
