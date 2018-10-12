@@ -6,11 +6,15 @@ module.exports = function(io) {
     const updateRate = 1; //millesecond
 
     const onConnection = require("./serverActions/onConnection")(io);
+    const onDisconnect = require("./serverActions/onDisconnect")(io);
     const onJoinGame   = require("./serverActions/onJoinGame")(io);
     const syncSocket   = require("./serverActions/syncSocket");
 
     //When a new user connects
     io.on("connection", onConnection);
+
+    //When a user disconnects/exits the server
+    io.on("disconnecting", onDisconnect);
 
     //When user is ready to join the game
     io.on("joinGame", onJoinGame);
