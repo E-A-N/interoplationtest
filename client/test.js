@@ -44,6 +44,7 @@ window.onload = () => {
     gameArea.appendChild(can);
 
     socket.on("update", (data) => {
+        var clients = socket._clients;
         data.forEach((i) => {
             clients[i.id] = i;
             console.log(i);
@@ -52,7 +53,7 @@ window.onload = () => {
         console.log(data);
     });
 
-    socket.on("gameStart" (data) => {
+    socket.on("gameStart", (data) => {
         setInterval(function(){
             let connectionIsReady = clients[socket.id].init
             if (connectionIsReady) {
