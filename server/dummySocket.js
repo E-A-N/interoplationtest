@@ -14,7 +14,7 @@ module.exports = (server) => {
             y: randY,
             sockets: [],
             init: true,
-            isDummy: true
+            isFake: true
         };
 
         if (call){

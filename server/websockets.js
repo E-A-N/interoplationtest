@@ -27,6 +27,7 @@ module.exports = function(io) {
      * @returns {object} - interval
     */
     io._startGameLoop = (ups) => {
+
         return setInterval(() => {
             io._updateTimer(ups, io._sockets);
             for (let s in io._sockets) {
@@ -35,6 +36,7 @@ module.exports = function(io) {
             }
             //io.emit("gameUpdate", io._sockets);
         }, ups);
+
     };
 
     io._startGameLoop(updateRate);
