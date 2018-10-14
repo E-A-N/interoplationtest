@@ -6,8 +6,8 @@ module.exports = (server) => {
         soc.id = Math.random().toString();
         //create random coordinates
         //atleast a tenth of whole at most 9 tenth of whole
-        var randX = Math.ceil(Math.random() * 9);
-        var randY = Math.ceil(Math.random() * 9);
+        var randX = Math.ceil(Math.random() * 9)/10;
+        var randY = Math.ceil(Math.random() * 9)/10;
         console.log(randX, randY);
         soc.game = {
             x: randX,

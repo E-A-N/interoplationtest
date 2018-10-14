@@ -20,7 +20,8 @@ module.exports = function(io) {
     io.on("joinGame", onJoinGame);
 
     io._createDummy(onConnection);
-    //io._createDummy(onConnection);
+    io._createDummy(onConnection);
+    io._createDummy(onConnection);
     //eanDebug decide the best way to start and store gameloop in a variable
     /**
      * @param {number} - ups: Updates Per Second

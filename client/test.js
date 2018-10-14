@@ -1,5 +1,6 @@
 socket = null;
 const cliSetup = function() {
+    //eanDebug check to see if client is connected 1st and make sure to discontinue previous connection
     socket = io("http://127.0.0.1:7777");
     socket._clients = {};
     return socket;
