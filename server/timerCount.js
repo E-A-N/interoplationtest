@@ -15,8 +15,7 @@ module.exports = (server) => {
 
         for (let t in sockets){
             var soc = sockets[t];
-            console.log(soc.id, "is", soc);
-            //soc.game.count += unit
+            soc.game.count += unit
         }
         if (intervalCondition) {
             let dataToSend = [];

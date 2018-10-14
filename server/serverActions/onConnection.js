@@ -2,7 +2,7 @@ module.exports = (server, config) => {
 
     return (socket) => {
         console.log("New connection!!", socket.id);
-        const authentic = typeof socket.game === undefined;
+        const authentic = typeof socket.game === "undefined";
         if (authentic){
             socket.game = require("./clientInit")(socket);
             console.log(socket.id, "is initialized in game!", server._sockets[socket.id]);
