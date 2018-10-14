@@ -1,10 +1,9 @@
 module.exports = (soc) => {
-    soc.game = {
+    console.log("Hiiiii!!!");
+    return {
         x: 0,
         y: 0,
         sockets: [],
         init: true,
     };
-
-    return soc;
-}
+};
