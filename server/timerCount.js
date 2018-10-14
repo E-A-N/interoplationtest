@@ -33,10 +33,6 @@ module.exports = (server) => {
             console.log(dataToSend);
             server.emit("update", dataToSend);
         };
-
-        // if (server._rootTime % 100 === 0){
-        //     server._sendTimeData(server._rootTime);
-        // }
     };
 
     return server;
