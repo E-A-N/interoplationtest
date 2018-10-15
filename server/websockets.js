@@ -1,3 +1,6 @@
+/**
+*    @param {socketServer} io - Reference to the webserver that is hosting the application and controlling sockets
+*/
 module.exports = function(io) {
     io = require("./timerCount")(io);
     io = require("./dummySocket")(io);
@@ -19,8 +22,6 @@ module.exports = function(io) {
     //When user is ready to join the game
     io.on("joinGame", onJoinGame);
 
-    // io._createDummy(onConnection);
-    // io._createDummy(onConnection);
     // io._createDummy(onConnection);
     //eanDebug decide the best way to start and store gameloop in a variable
     /**

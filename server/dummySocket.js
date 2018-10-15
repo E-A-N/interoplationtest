@@ -1,5 +1,7 @@
 module.exports = (server) => {
-
+    /**
+     *    @param {function} call - A callback function that executes right before the fake socketdata is added to game
+     */
     server._createDummy = function(call){
         const soc = {};
         //create fake id

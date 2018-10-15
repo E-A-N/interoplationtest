@@ -16,12 +16,12 @@ const ready = (socket) => {
     msg.innerHTML = "You\'re connecting!";
     console.log("Player is readyyyy!!");
 
-    socket.emit("joinGame", {id:77})
+    socket.emit("joinGame", {id:77});
 };
 
 const renderClients = (socket, can, ctx) => {
     var clients = socket._clients;
-    for (let cli in clients){
+    for (let cli in clients) {
         cli = clients[cli];
         var name = cli.id;
         var x = cli.x * can.width;
