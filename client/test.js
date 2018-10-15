@@ -9,7 +9,9 @@ const cliSetup = function() {
 };
 
 const ready = (socket) => {
-    cliSetup();
+    if (!socket){
+        socket = cliSetup();
+    }
     const msg = document.getElementById("msgWin");
     msg.innerHTML = "You\'re connecting!";
     console.log("Player is readyyyy!!");
@@ -20,6 +22,7 @@ const ready = (socket) => {
 const renderClients = (socket, can, ctx) => {
     var clients = socket._clients;
     for (let cli in clients){
+        cli = clients[cli];
         var name = cli.id;
         var x = cli.x * can.width;
         var y = cli.y * can.height;
@@ -28,7 +31,7 @@ const renderClients = (socket, can, ctx) => {
     }
 }
 
-const gameStart = (socket, can, ctx) => {
+const renderStart = (socket, can, ctx) => {
     ctx.clearRect(0, 0, can.width, can.height);
     renderClients(socket, can, ctx);
 };
@@ -52,15 +55,16 @@ window.onload = () => {
             clients[i.id] = i;
             console.log(i);
         });
+        renderStart(socket, can, ctx);
         console.log("data recieved!!");
         console.log(data);
     });
 
-    socket.on("gameStart", (data) => {
+    socket.on("renderStart", (data) => {
         setInterval(function(){
             let connectionIsReady = clients[socket.id].init
             if (connectionIsReady) {
-                gameStart(socket, can, ctx);
+                renderStart(socket, can, ctx);
             }
         },100);
     });
