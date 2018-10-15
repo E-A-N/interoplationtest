@@ -11,7 +11,7 @@ module.exports = (server) => {
 
     server._updateTimer = (unit, sockets) => {
         server._rootTime += unit;
-        const intervalCondition = server._rootTime % 3000 === 0 && Object.keys(sockets).length > 0;
+        const intervalCondition = server._rootTime % 100 === 0 && Object.keys(sockets).length > 0;
 
         for (let t in sockets){
             var soc = sockets[t];
@@ -30,7 +30,7 @@ module.exports = (server) => {
                 data.init  = soc.game.init;
                 dataToSend.push(data);
             }
-            console.log(dataToSend);
+            //console.log(dataToSend);
             server.emit("update", dataToSend);
         };
     };

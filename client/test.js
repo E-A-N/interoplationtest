@@ -49,15 +49,20 @@ window.onload = () => {
 
     gameArea.appendChild(can);
 
+    socket.on("playerRemove", (data) =>{
+        delete socket._clients[data];
+        console.log("Removed player:", data);
+    });
+
     socket.on("update", (data) => {
         var clients = socket._clients;
         data.forEach((i) => {
             clients[i.id] = i;
-            console.log(i);
+            //console.log(i);
         });
         renderStart(socket, can, ctx);
-        console.log("data recieved!!");
-        console.log(data);
+        // console.log("data recieved!!");
+        // console.log(data);
     });
 
     socket.on("renderStart", (data) => {

@@ -8,6 +8,7 @@ module.exports = (server, config) => {
             console.log(socket.id, "is initialized in game!", server._sockets[socket.id]);
             socket.on("disconnecting", () => {
                 console.log(socket.id, "has disconnected after:",socket.game.count/100, "seconds!");
+                server.emit("playerRemove", socket.id);
                 delete server._sockets[socket.id];
             });
         }
