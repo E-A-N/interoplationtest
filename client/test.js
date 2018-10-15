@@ -1,7 +1,9 @@
 socket = null;
 const cliSetup = function() {
     //eanDebug check to see if client is connected 1st and make sure to discontinue previous connection
-    socket = io("http://127.0.0.1:7777");
+    //const addy = "http://127.0.0.1:7777"; eanDebug
+    const addy = "http://192.168.0.5:7777";
+    socket = io(addy);
     socket._clients = {};
     return socket;
 };

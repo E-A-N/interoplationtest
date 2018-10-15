@@ -17,7 +17,8 @@ var webSockets = require(servRoute)(io);
 //open port for game to be played on
 var sitePath = process.argv[2] || ".";
 var port = 7777;
-var address = "http://localhost:";
+//var address = "http://localhost:";
+var address = "0.0.0.0:"
 
 var gameRoute = path.join(__dirname,'client',sitePath);
 gameRoute = path.normalize(gameRoute);

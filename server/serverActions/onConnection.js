@@ -7,7 +7,7 @@ module.exports = (server, config) => {
             socket.game = require("./clientInit")(socket);
             console.log(socket.id, "is initialized in game!", server._sockets[socket.id]);
             socket.on("disconnecting", () => {
-                console.log("getting rid of socket:", socket.id);
+                console.log(socket.id, "has disconnected after:",socket.game.count/100, "seconds!");
                 delete server._sockets[socket.id];
             });
         }
