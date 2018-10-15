@@ -6,7 +6,8 @@ module.exports = (server, config) => {
         if (authentic){
             socket.game = require("./clientInit")(socket);
             console.log(socket.id, "is initialized in game!", server._sockets[socket.id]);
-            socket.on("disconnecting", () => {
+            socket.on("disconnecting", (data) => {
+                console.log("Data is:", data);
                 console.log(socket.id, "has disconnected after:",socket.game.count/100, "seconds!");
                 server.emit("playerRemove", socket.id);
                 delete server._sockets[socket.id];
