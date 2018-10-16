@@ -16,4 +16,4 @@ An app that demonstrates networking synchronization and server side prediction (
 * The client should recieve the data in an "onUpate" kind of method
     * First the client should distribute the data to the appropriate local objects that correspond to other client sockets.
     * Initially the client should not handle it's own socket data uniquely.
-* The client should not change the data attribute itself.
+* The client should not change the data attribute itself OR ANY data attributes that aren't purely input based
