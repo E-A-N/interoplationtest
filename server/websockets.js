@@ -22,6 +22,15 @@ module.exports = function(io) {
     //When user is ready to join the game
     io.on("joinGame", onJoinGame);
 
+    const updateGameLoop = () => {
+        io._updateTimer(ups, io._sockets);
+        //io.updateActionHistory(io.sockets);
+        for (let s in io._sockets) {
+            let soc = io._sockets[s];
+            syncSocket(soc, io._sockets);
+        }
+        //io.emit("gameUpdate", io._sockets);
+    }
     // io._createDummy(onConnection);
     //eanDebug decide the best way to start and store gameloop in a variable
     /**
@@ -30,15 +39,7 @@ module.exports = function(io) {
     */
     io._startGameLoop = (ups) => {
 
-        return setInterval(() => {
-            io._updateTimer(ups, io._sockets);
-            for (let s in io._sockets) {
-                let soc = io._sockets[s];
-                syncSocket(soc, io._sockets);
-            }
-            //io.emit("gameUpdate", io._sockets);
-        }, ups);
-
+        return setInterval(updateGameLoop, ups);
     };
 
     io._startGameLoop(updateRate);
