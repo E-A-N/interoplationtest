@@ -13,7 +13,7 @@ module.exports = function(io) {
     const onJoinGame   = require("./serverActions/onJoinGame")(io);
     const syncSocket   = require("./serverActions/syncSocket")(io);
     const history      = require("./serverActions/actionHistory")(io);
-    const gameUpdate   = require("./serverAction/gameUpdate")(io);
+    const gameUpdate   = require("./serverActions/gameUpdate")(io);
 
     //When a new user connects
     io.on("connection", onConnection);

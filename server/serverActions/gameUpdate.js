@@ -13,5 +13,5 @@ module.exports = (server, sockets, call) => {
     }
 
     if (call) call;
-    server.emit("update");
+    server.emit("update", dataToSend);
 }

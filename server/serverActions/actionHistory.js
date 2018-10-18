@@ -7,18 +7,18 @@ module.exports = (server) => {
     };
 
     server._appendToSocketMomentInHistory = (que, data) => {
+        //If theres more then 10 records delete oldest record
         if (que.length > 10){
             que.shift();
         }
         que.push(data);
-
         return que;
     };
 
     server._getSocketHistory = (socket, que, call) => {
         if (que.length > 0) {
             const moment = que.shift();
-            call(moment);
+            if (call) call(moment);
             return moment;
         }
         return -1;
