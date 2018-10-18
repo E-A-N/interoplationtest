@@ -1,18 +1,21 @@
-//This should always be the very last update function to be called
 module.exports = (server) => {
     const actionLimit = 10;
-    server._initHistory = (socket) => {
-        socket._actionQue = [];
+    server._initSocketHistory = (socket) => {
+        socket.game.historyQue = [];
+        socket.game.presentAction = {};
         return socket;
     };
 
-    server._appendToMomentInHistory = (que, data) => {
+    server._appendToSocketMomentInHistory = (que, data) => {
+        if (que.length > 10){
+            que.shift();
+        }
         que.push(data);
 
         return que;
     };
 
-    server._getMomentInHistory(que, call) => {
+    server._getSocketHistory = (socket, que, call) => {
         if (que.length > 0) {
             const moment = que.shift();
             call(moment);
@@ -21,14 +24,12 @@ module.exports = (server) => {
         return -1;
     };
 
-    server._serveActionPosition = () => {
-        const num = server._timePosition;
-        const atActionLimit = server._timePostion > server._actionLimit;
-        if (atActionLimit){
-            server._timePosition = 0;
+    server._setSocketPresentAction = (soc) => {
+        if (soc.game.historyQue.length > 0){
+            soc.game.presentAction = soc.game.historyQue.shift();
         }
 
-
+        return soc;
     }
 
 }
