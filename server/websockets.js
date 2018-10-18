@@ -11,7 +11,7 @@ module.exports = function(io) {
     const onConnection = require("./serverActions/onConnection")(io);
     const onDisconnect = require("./serverActions/onDisconnect")(io);
     const onJoinGame   = require("./serverActions/onJoinGame")(io);
-    const syncSocket   = require("./serverActions/syncSocket")(io);
+    const syncSocket   = require("./serverActions/syncSockets")(io);
     const history      = require("./serverActions/actionHistory")(io);
     const gameUpdate   = require("./serverActions/gameUpdate")(io);
 
@@ -24,7 +24,7 @@ module.exports = function(io) {
     //When user is ready to join the game
     io.on("joinGame", onJoinGame);
 
-    const updateGameLoop = () => {
+    const updateGameLoop = (dataSend) => {
         io._updateTimer(updateRate, io._sockets);
         //io.updateActionHistory(io.sockets);
         for (let s in io._sockets) {
