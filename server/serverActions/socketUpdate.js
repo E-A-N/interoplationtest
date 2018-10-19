@@ -6,6 +6,8 @@ module.exports = (io) => {
         soc.rightInput = data.rightInput;
         soc.upInput    = data.upInput;
         soc.downInput  = data.downInput;
+
+        console.log("recieved update from:", data.id);
     });
 
     return io;

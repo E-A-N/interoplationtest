@@ -7,8 +7,8 @@ k.leftInput = keyboard(37);
 k.rightInput = keyboard(39);
 k.fInput = keyboard(70);
 
-const sendInput = (io, key) => {
+const sendInput = (soc, key) => {
     if (key.leftInput){
-
+        soc.emit("socketUpdate", "frosty");
     }
 }
