@@ -12,7 +12,7 @@ module.exports = function(io) {
     const onDisconnect = require("./serverActions/onDisconnect")(io);
     const onJoinGame   = require("./serverActions/onJoinGame")(io);
     const syncSocket   = require("./serverActions/syncSockets")(io);
-    const history      = require("./serverActions/actionHistory")(io);
+    //const history      = require("./serverActions/actionHistory")(io);
     const gameUpdate   = require("./serverActions/gameUpdate")(io);
 
     //When a new user connects

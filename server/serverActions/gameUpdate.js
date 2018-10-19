@@ -2,7 +2,7 @@ module.exports = (server, sockets, call) => {
     const dataToSend = [];
     for (let s in sockets){
         let data   = {};
-        let soc    = sockets[s].presentAction || sockets[s];
+        let soc    = sockets[s];
         data.id    = soc.id
         data.x     = soc.game.x;
         data.y     = soc.game.y;
