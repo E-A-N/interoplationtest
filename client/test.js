@@ -32,6 +32,7 @@ const renderClients = (socket, can, ctx) => {
 }
 
 const renderStart = (socket, can, ctx) => {
+    sendInput(socket, k);
     ctx.clearRect(0, 0, can.width, can.height);
     renderClients(socket, can, ctx);
 };
@@ -61,8 +62,6 @@ window.onload = () => {
             //console.log(i);
         });
         renderStart(socket, can, ctx);
-        // console.log("data recieved!!");
-        // console.log(data);
     });
 
     socket.on("renderStart", (data) => {

@@ -12,11 +12,15 @@ module.exports = (server, config) => {
                 server.emit("playerRemove", socket.id);
                 delete server._sockets[socket.id];
             });
+
+            socket.on("socketUpdate", (data) => {
+                console.log("socket up data is:", data);
+            })
         }
         socket = server._initTimer(socket);
         //socket = server._initSocketHistory(socket);
         server._sockets[socket.id] = socket;
-        //console.log(socket);
+        //  console.log(socket);
         return socket;
     }
 }
