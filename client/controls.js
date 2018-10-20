@@ -10,5 +10,5 @@ k.fInput = keyboard(70);
 const sendInput = (soc, key) => {
     if (key.leftInput){
         soc.emit("socketUpdate", "frosty");
-    }
+    };
 }

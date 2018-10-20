@@ -7,10 +7,10 @@ module.exports = (server) => {
     */
     server._syncSockets = function(soc, serverSockets){
         for (let mainSocket in serverSockets){
-            let currentSocket = serverSockets[mainSocket];
+            let updateThisSocket = serverSockets[mainSocket];
             for (let s in serverSockets){
                 let update = serverSockets[s];
-                currentSocket.game.sockets[update.id] = update;
+                updateThisSocket.game.sockets[update.id] = update;
             }
         }
         return serverSockets;

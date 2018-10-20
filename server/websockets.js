@@ -25,12 +25,16 @@ module.exports = function(io) {
     //When user is ready to join the game
     io.on("joinGame", onJoinGame);
 
+    io.on("socketUpdate", (data) => {
+        console.log("socket up data is:", data);
+    })
+
     const updateGameLoop = (dataSend) => {
         io._updateTimer(updateRate, io._sockets);
         //io.updateActionHistory(io.sockets);
         for (let s in io._sockets) {
             let soc = io._sockets[s];
-            io._syncSocket(soc, io._sockets);
+            io._syncSockets(soc, io._sockets);
         }
         //io.emit("gameUpdate", io._sockets);
     }

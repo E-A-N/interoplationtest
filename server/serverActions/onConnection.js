@@ -16,7 +16,7 @@ module.exports = (server, config) => {
         socket = server._initTimer(socket);
         //socket = server._initSocketHistory(socket);
         server._sockets[socket.id] = socket;
-        console.log(socket);
+        //console.log(socket);
         return socket;
     }
 }
