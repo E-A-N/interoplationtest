@@ -14,9 +14,6 @@ module.exports = (server, config) => {
                 delete server._sockets[socket.id];
             });
             socket = require("./socketUpdate")(socket);
-            // socket.on("socketUpdate", (data) => {
-            //     console.log("socket up data is:", data);
-            // })
         }
         socket = server._initTimer(socket);
         //socket = server._initSocketHistory(socket);
