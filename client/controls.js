@@ -12,8 +12,22 @@ const sendInput = (soc, key) => {
     var inputOccured = false;
 
     if (key.leftInput.isDown){
-        console.log("socket update sent!");
         data.leftInput = true;
+        inputOccured = true
+    };
+
+    if (key.rightInput.isDown){
+        data.rightInput = true;
+        inputOccured = true
+    };
+
+    if (key.upInput.isDown){
+        data.upInput = true;
+        inputOccured = true
+    };
+
+    if (key.downInput.isDown){
+        data.downInput = true;
         inputOccured = true
     };
 
