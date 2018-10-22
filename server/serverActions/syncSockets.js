@@ -2,10 +2,9 @@
 module.exports = (server) => {
     /**
     * This method updates a chosen socket with the state of the other sockets
-    * @param {object} soc - The chosen socket to updates
-    * @param {object} socList - Associative array containing relevant sockets
+    * @param {object} serverSockets - Associative array containing relevant sockets
     */
-    server._syncSockets = function(soc, serverSockets){
+    server._syncSockets = function(serverSockets){
         for (let thisSocket in serverSockets){
             let updateThisSocket = serverSockets[thisSocket];
             for (let s in serverSockets){
