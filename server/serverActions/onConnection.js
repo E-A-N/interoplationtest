@@ -5,6 +5,7 @@ module.exports = (server, config) => {
         const authentic = typeof socket.game === "undefined";
         if (authentic){
             socket.game = require("./clientInit")(socket);
+
             console.log(socket.id, "is initialized in game!", server._sockets[socket.id]);
             socket.on("disconnecting", (data) => {
                 console.log("Data is:", data);
@@ -12,10 +13,10 @@ module.exports = (server, config) => {
                 server.emit("playerRemove", socket.id);
                 delete server._sockets[socket.id];
             });
-
-            socket.on("socketUpdate", (data) => {
-                console.log("socket up data is:", data);
-            })
+            socket = require("./socketUpdate")(socket);
+            // socket.on("socketUpdate", (data) => {
+            //     console.log("socket up data is:", data);
+            // })
         }
         socket = server._initTimer(socket);
         //socket = server._initSocketHistory(socket);

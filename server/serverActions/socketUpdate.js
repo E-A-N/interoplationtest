@@ -1,14 +1,15 @@
-module.exports = (io) => {
+module.exports = (socket) => {
 
-    io.on("socketUpdate", (data) => {
-        let soc = io._sockets[data.id];
-        soc.leftInput  = data.leftInput;
-        soc.rightInput = data.rightInput;
-        soc.upInput    = data.upInput;
-        soc.downInput  = data.downInput;
+    socket.on("socketUpdate", (data) => {
+        const deltaPacket = Object.keys(data);
 
-        console.log("recieved update from:", data.id);
+        for (let i in data){
+            //eanDebug check to make sure data attibutes exist in game
+            socket.game[i] = data[i];
+        }
+
+        console.log("recieved update:", data);
     });
 
-    return io;
+    return socket
 }
