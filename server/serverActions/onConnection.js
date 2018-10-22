@@ -16,6 +16,7 @@ module.exports = (server, config) => {
             socket = require("./socketUpdate")(socket);
         }
         socket = server._initTimer(socket);
+        socket = server._initPlayer(socket);
         //socket = server._initSocketHistory(socket);
         server._sockets[socket.id] = socket;
         //  console.log(socket);
