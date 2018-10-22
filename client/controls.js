@@ -8,8 +8,16 @@ k.rightInput = keyboard(39);
 k.fInput = keyboard(70);
 
 const sendInput = (soc, key) => {
+    var data = {};
+    var inputOccured = false;
+
     if (key.leftInput.isDown){
         console.log("socket update sent!");
-        soc.emit("socketUpdate", "frosty");
+        data.leftInput = true;
+        inputOccured = true
     };
+
+    if (inputOccured){
+        soc.emit("socketUpdate", data);
+    }
 }
