@@ -8,7 +8,7 @@ An app that demonstrates networking synchronization and server side prediction (
 * Depending on what the data is, in can be computed in the initialization
     * For example if it's the starting x/y coordinates and you want to randomize them, they should be computed as soon as they're created in the initialization
     * As a counter example, you can wait until the client is ready to join the game and make the coordinates based on client information when the time comes to emit data to the server ("onJoinGame" etc)
-* If this is data (like rendering information) that's going to be shared with other clients, make sure the other client sockets receive the data in a syncing method (example: (syncSockets.js)[https://github.com/E-A-N/interoplationtest/blob/master/server/serverActions/syncSockets.js] );
+* If this is data (like rendering information) that's going to be shared with other clients, make sure the other client sockets receive the data in a syncing method (example: [https://github.com/E-A-N/interoplationtest/blob/master/server/serverActions/syncSockets.js](syncSockets.js) );
 * The server update function should check for several steps before sending them to the client.
     * Compute the attributes
     * Check that they're synced
