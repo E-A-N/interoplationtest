@@ -6,8 +6,8 @@ module.exports = (server) => {
     * @param {object} socList - Associative array containing relevant sockets
     */
     server._syncSockets = function(soc, serverSockets){
-        for (let mainSocket in serverSockets){
-            let updateThisSocket = serverSockets[mainSocket];
+        for (let thisSocket in serverSockets){
+            let updateThisSocket = serverSockets[thisSocket];
             for (let s in serverSockets){
                 let update = serverSockets[s];
                 updateThisSocket.game.sockets[update.id] = update;
