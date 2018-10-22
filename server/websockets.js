@@ -30,7 +30,7 @@ module.exports = function(io) {
         //io.updateActionHistory(io.sockets);
         for (let s in io._sockets) {
             let soc = io._sockets[s];
-            io._syncSockets(soc, io._sockets);
+            io._syncSockets(io._sockets);
         }
         //io.emit("gameUpdate", io._sockets);
     }
