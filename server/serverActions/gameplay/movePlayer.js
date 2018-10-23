@@ -1,8 +1,8 @@
 module.export = (socket) => {
-    const ox = socket.game.x;
-    const oy = socket.game.y;
-    var vspd = socket.game.vspd;
     var hspd = socket.game.hspd;
+    var vspd = socket.game.vspd;
+    var vx   = 0;
+    var vy   = 0;
 
     //stop moving if there's no input;
     socket.game.x = 0;
@@ -10,18 +10,24 @@ module.export = (socket) => {
 
     //check for inputs
     if (socket.game.leftInput){
-        socket.game.x += -hspd;
+        vx += -hspd;
     }
 
     if (socket.game.rightInput){
-        socket.game.x += -hspd;
+        vx += hspd;
     }
 
     if (socket.game.upInput){
-        socket.game.y += -vspd;
+        vy += vspd;
     }
 
     if (socket.game.downInput){
-        socket.game.y += vspd;
+        vy += -vspd;
     }
+
+    //add any velocity to sockets position
+    socket.game.x += vx;
+    socket.game.y += vy;
+
+    return socket;
 }

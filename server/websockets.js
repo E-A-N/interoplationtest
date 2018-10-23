@@ -27,11 +27,13 @@ module.exports = function(io) {
 
     const updateGameLoop = (dataSend) => {
         io._updateTimer(updateRate, io._sockets);
+        //io.movePlayer(io._sockets);
         //io.updateActionHistory(io.sockets);
         for (let s in io._sockets) {
             let soc = io._sockets[s];
             io._syncSockets(io._sockets);
         }
+        //io._gameUpdate(io, io._sockets);
         //io.emit("gameUpdate", io._sockets);
     }
      io._createDummy(onConnection);
