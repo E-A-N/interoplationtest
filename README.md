@@ -17,3 +17,9 @@ An app that demonstrates networking synchronization and server side prediction (
     * First the client should distribute the data to the appropriate local objects that correspond to other client sockets.
     * Initially the client should not handle it's own socket data uniquely.
 * The client should not change the data attribute itself OR ANY data attributes that aren't purely input based
+
+
+## Helpful Resources!
+* [Fast Paced Multiplayer Articles](http://www.gabrielgambetta.com/client-server-game-architecture.html) : General Tutorial
+* [Smooth Multiplayer Gameplay Example](http://www.kinematicsoup.com/news/2017/5/30/multiplayerprediction) : General Tutorial
+* [Multiplayer Online Game] (http://www.dynetisgames.com/2017/03/06/how-to-make-a-multiplayer-online-game-with-phaser-socket-io-and-node-js/) : JS/Phaser Tutorial
