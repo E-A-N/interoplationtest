@@ -14,7 +14,7 @@ module.exports = function(io) {
     const syncSocket   = require("./serverActions/syncSockets")(io);
     //const socketUpdate = require("./serverActions/socketUpdate")(io);
     //const history      = require("./serverActions/actionHistory")(io);
-    const gameUpdate   = require("./serverActions/gameUpdate")(io);
+    const clientUpdate   = require("./serverActions/clientUpdate")(io);
 
     //When a new user connects
     io.on("connection", onConnection);
@@ -26,15 +26,21 @@ module.exports = function(io) {
     io.on("joinGame", onJoinGame);
 
     const updateGameLoop = (dataSend) => {
-        io._updateTimer(updateRate, io._sockets);
-        //io.movePlayer(io._sockets);
+        let sockets = io._sockets;
+        sockets     = io._updateTimer(updateRate, sockets);
+        //sockets     = io.movePlayer(io._sockets);
         //io.updateActionHistory(io.sockets);
-        for (let s in io._sockets) {
-            let soc = io._sockets[s];
-            io._syncSockets(io._sockets);
+        for (let s in sockets) {
+            let soc = sockets[s];
+            io._syncSockets(sockets);
         }
-        //io._gameUpdate(io, io._sockets);
-        //io.emit("gameUpdate", io._sockets);
+        let timeToUpdateClient = io._rootTime % 100 === 0 && Object.keys(sockets).length > 0;
+
+        if (timeToUpdateClient){
+            let clientData = io._clientUpdate(io, sockets);
+            io.emit("gameUpdate", clientData);
+        }
+
     }
      io._createDummy(onConnection);
     //eanDebug decide the best way to start and store gameloop in a variable
@@ -47,5 +53,6 @@ module.exports = function(io) {
         return setInterval(updateGameLoop, ups);
     };
 
+    //eanDebug run this somewhere else at a place that accepts command line arguments
     io._startGameLoop(updateRate);
 }
