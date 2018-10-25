@@ -37,11 +37,10 @@ module.exports = function(io) {
             let soc = sockets[s];
             io._syncSockets(sockets);
         }
-        let timeToUpdateClient = io._rootTime % 3000 === 0 && Object.keys(sockets).length > 0;
+        let timeToUpdateClient = io._rootTime % 100 === 0 && Object.keys(sockets).length > 0;
 
         if (timeToUpdateClient){
             let clientData = io._clientUpdate(io, sockets);
-            console.log(clientData);
             io.emit("gameUpdate", clientData);
         }
 
