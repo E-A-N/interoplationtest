@@ -1,4 +1,4 @@
-module.export = (sockets) => {
+module.exports = (sockets) => {
 
     for (let s in sockets){
         let soc = sockets[s];
