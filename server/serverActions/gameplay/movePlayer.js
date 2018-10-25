@@ -7,10 +7,6 @@ module.exports = (sockets) => {
         let vx   = 0;
         let vy   = 0;
 
-        //stop moving if there's no input;
-        soc.game.x = 0;
-        soc.game.y = 0;
-
         //check for inputs
         if (soc.game.leftInput){
             vx += -hspd;
@@ -31,6 +27,9 @@ module.exports = (sockets) => {
         //add any velocity to sockets position
         soc.game.x += vx;
         soc.game.y += vy;
+
+        // console.log(soc.id, "x is now:", soc.game.x)
+        // console.log(soc.id, "y is now:", soc.game.y)
     }
     return sockets;
 }
