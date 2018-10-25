@@ -55,7 +55,7 @@ window.onload = () => {
         console.log("Removed player:", data);
     });
 
-    socket.on("update", (data) => {
+    socket.on("gameUpdate", (data) => {
         var clients = socket._clients;
         data.forEach((i) => {
             clients[i.id] = i;
