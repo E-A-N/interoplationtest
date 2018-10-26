@@ -1,8 +1,10 @@
 module.export = (numbers) => {
-    let median;
+    //Return value of the only number if there isn't list of numbers
     if (numbers.length < 2){
         return numbers[0];
     }
+    
+    let median;
     numbers = numbers.sort((a,b) => {
         return a - b;
     });
