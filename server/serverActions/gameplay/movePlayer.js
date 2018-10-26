@@ -17,13 +17,17 @@ module.exports = (sockets) => {
         }
 
         if (soc.game.upInput){
-            vy += vspd;
-        }
-
-        if (soc.game.downInput){
             vy += -vspd;
         }
 
+        if (soc.game.downInput){
+            vy += vspd;
+        }
+
+        soc.game.leftInput = false;
+        soc.game.rightInput = false;
+        soc.game.upInput = false;
+        soc.game.downInput = false; 
         //add any velocity to sockets position
         soc.game.x += vx;
         soc.game.y += vy;

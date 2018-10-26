@@ -24,8 +24,14 @@ const renderClients = (socket, can, ctx) => {
     for (let cli in clients) {
         cli = clients[cli];
         var name = cli.id;
-        var x = cli.x * can.width;
-        var y = cli.y * can.height;
+        if (cli.dummy){
+            var x = cli.x * can.width;
+            var y = cli.y * can.height;
+        }
+        else {
+            var x = cli.x;
+            var y = cli.y;
+        }
         ctx.fillText(name, x, y - 15);
         ctx.fillText(cli.count, x, y);
     }
