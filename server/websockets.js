@@ -35,7 +35,7 @@ module.exports = function(io) {
             let soc = sockets[s];
             io._syncSockets(sockets);
         }
-        let timeToUpdateClient = io._rootTime % 25 === 0 && Object.keys(sockets).length > 0;
+        let timeToUpdateClient = io._rootTime % 100 === 0 && Object.keys(sockets).length > 0;
 
         if (timeToUpdateClient){
             let clientData = io._clientUpdate(io, sockets);

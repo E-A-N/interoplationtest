@@ -65,7 +65,6 @@ window.onload = () => {
         var clients = socket._clients;
         data.forEach((i) => {
             clients[i.id] = i;
-            //console.log(i);
         });
         renderStart(socket, can, ctx);
     });

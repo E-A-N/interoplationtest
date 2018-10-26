@@ -9,6 +9,10 @@ module.exports = (server, sockets, call) => {
         data.count = soc.game.count;
         data.timeOrigin = soc.game.timeOrigin;
         data.init  = soc.game.init;
+
+        if (soc.game.dummy){
+            data.dummy = soc.game.dummy;
+        }
         dataToSend.push(data);
     }
 
