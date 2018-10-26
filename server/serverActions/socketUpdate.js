@@ -6,7 +6,7 @@ module.exports = (socket) => {
             socket.game[i] = data[i];
         }
 
-        console.log("recieved update:", data);
+        //console.log("recieved update:", data);
     });
 
     return socket

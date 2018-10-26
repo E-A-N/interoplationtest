@@ -14,8 +14,6 @@ module.exports = function(io) {
     const syncSocket   = require("./serverActions/syncSockets")(io);
     io._initPlayer     = require("./serverActions/gameplay/initPlayer");
     io._movePlayer     = require("./serverActions/gameplay/movePlayer");
-    //const socketUpdate = require("./serverActions/socketUpdate")(io);
-    //const history      = require("./serverActions/actionHistory")(io);
     io._clientUpdate   = require("./serverActions/clientUpdate");
 
 
@@ -37,7 +35,7 @@ module.exports = function(io) {
             let soc = sockets[s];
             io._syncSockets(sockets);
         }
-        let timeToUpdateClient = io._rootTime % 100 === 0 && Object.keys(sockets).length > 0;
+        let timeToUpdateClient = io._rootTime % 25 === 0 && Object.keys(sockets).length > 0;
 
         if (timeToUpdateClient){
             let clientData = io._clientUpdate(io, sockets);
