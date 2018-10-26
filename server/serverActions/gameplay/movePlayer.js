@@ -24,16 +24,16 @@ module.exports = (sockets) => {
             vy += vspd;
         }
 
-        soc.game.leftInput = false;
-        soc.game.rightInput = false;
-        soc.game.upInput = false;
-        soc.game.downInput = false; 
+
         //add any velocity to sockets position
         soc.game.x += vx;
         soc.game.y += vy;
 
-        // console.log(soc.id, "x is now:", soc.game.x)
-        // console.log(soc.id, "y is now:", soc.game.y)
+        //reset inputs so they aren't continuous when
+        soc.game.leftInput = false;
+        soc.game.rightInput = false;
+        soc.game.upInput = false;
+        soc.game.downInput = false;
     }
     return sockets;
 }
