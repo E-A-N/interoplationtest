@@ -9,9 +9,9 @@ module.export = (numbers) => {
         return a - b;
     });
 
-    const isEvenNumber = numbers.length % 2 === 0;
+    const evenAmountOfNumbers = numbers.length % 2 === 0;
 
-    if (isEvenNumber){
+    if (evenAmountOfNumbers){
         const lowerMidNumber = numbers[(numbers.length/2) - 1]
         const higherMidNumber = numbers[(numbers.length/2)];
 
