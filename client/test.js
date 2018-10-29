@@ -1,7 +1,7 @@
 socket = null;
 const cliSetup = function() {
     //eanDebug check to see if client is connected 1st and make sure to discontinue previous connection
-    //const addy = "http://127.0.0.1:7777"; eanDebug
+    const addy = "http://127.0.0.1:7777"; //eanDebug
     //const addy = "http://0.0.0.0:7777";
     socket = io(addy);
     socket._clients = {};
@@ -62,6 +62,8 @@ window.onload = () => {
     });
 
     socket.on("gameUpdate", (data) => {
+        let pong = data[socket.id].ping;
+        socket.emit("pong", pong);
         var clients = socket._clients;
         data.forEach((i) => {
             clients[i.id] = i;
