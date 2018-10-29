@@ -71,6 +71,9 @@ window.onload = () => {
         var clients = socket._clients;
         data.forEach((i) => {
             clients[i.id] = i;
+            if (i.id === socket.id){
+                socket._pinged = true;
+            }
         });
         renderStart(socket, can, ctx);
     });
