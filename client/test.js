@@ -63,10 +63,11 @@ window.onload = () => {
 
     socket.on("gameUpdate", (data) => {
 
-        // if (socket.id) {
-        //     var pong = data[socket.id].ping;
-        // }
-        socket.emit("pong", pong);
+        if (socket._pinged) {
+            var pong = data[socket.id].ping;
+            socket.emit("pong", data.ping);
+        }
+
         var clients = socket._clients;
         data.forEach((i) => {
             clients[i.id] = i;
