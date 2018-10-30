@@ -63,16 +63,19 @@ window.onload = () => {
 
     socket.on("gameUpdate", (data) => {
 
-        if (socket._pinged) {
-            var pong = data[socket.id].ping;
-            socket.emit("pong", data.ping);
-        }
+
 
         var clients = socket._clients;
         data.forEach((i) => {
             clients[i.id] = i;
             if (i.id === socket.id){
-                socket._pinged = true;
+
+                if (socket._pinged) {
+                    socket.emit("pong", i.ping);
+                }
+                else {
+                    socket._pinged = true;
+                }
             }
         });
         renderStart(socket, can, ctx);
