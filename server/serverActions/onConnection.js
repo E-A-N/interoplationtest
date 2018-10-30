@@ -4,6 +4,7 @@ module.exports = (server, config) => {
         console.log("New connection!!", socket.id);
         const authentic = typeof socket.game === "undefined";
         if (authentic){
+            let getLatency = require("../tools/medianNumber");
             socket.game = require("./clientInit")(socket);
             socket.pings = [];
             socket.on("disconnecting", (data) => {
@@ -13,12 +14,16 @@ module.exports = (server, config) => {
                 delete server._sockets[socket.id];
             });
             socket.on("pong", (data) => {
-                var latency = (Date.now()  - parseInt(data))/2;
-                latency = latency < 0 ? 0 : latency;
+                let delta = (Date.now()  - parseInt(data))/2;
+                delta = delta < 0 ? 0 : latency;
                 socket.pings.push(delta);
-                if (socket.pings.length > 20) socket.pings.shift();
+                if (socket.pings.length > 20) {
+                    socket.pings.shift();
+                    console.log(socket.pings);
+                }
+                latency = getLatency(delta);
+            });
 
-            })
             socket = require("./socketUpdate")(socket);
         }
         socket = server._initTimer(socket);
