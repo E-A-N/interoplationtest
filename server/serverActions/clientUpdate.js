@@ -11,6 +11,7 @@ module.exports = (server, sockets, call) => {
         data.timeOrigin = soc.game.timeOrigin;
         data.init  = soc.game.init;
         data.ping  = ping;
+        data.lat   = soc.game.latency
 
         if (soc.game.dummy){
             data.dummy = soc.game.dummy;

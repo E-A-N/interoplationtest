@@ -5,6 +5,7 @@ module.exports = (soc) => {
         x: randX,
         y: randY,
         sockets: [],
+        latency: 0,
         init: true,
     };
 };

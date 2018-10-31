@@ -21,7 +21,7 @@ module.exports = (server, config) => {
                     socket.pings.shift();
                     console.log(socket.pings);
                 }
-                latency = getLatency(delta);
+                socket.game.latency = getLatency(delta);
             });
 
             socket = require("./socketUpdate")(socket);
