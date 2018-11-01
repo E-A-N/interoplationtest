@@ -38,7 +38,7 @@ const renderClients = (socket, can, ctx) => {
 }
 
 const renderStart = (socket, can, ctx) => {
-    sendInput(socket, k);
+    sendInput(socket, k);  //global function called from controls.js
     ctx.clearRect(0, 0, can.width, can.height);
     renderClients(socket, can, ctx);
 };
@@ -62,9 +62,6 @@ window.onload = () => {
     });
 
     socket.on("gameUpdate", (data) => {
-
-
-
         var clients = socket._clients;
         data.forEach((i) => {
             clients[i.id] = i;

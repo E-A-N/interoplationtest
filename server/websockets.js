@@ -43,6 +43,10 @@ module.exports = function(io) {
         }
 
     }
+
+    io.on("pong", (data) => {
+        console.log("server pinged with:", data);
+    })
      io._createDummy(onConnection);
     //eanDebug decide the best way to start and store gameloop in a variable
     /**
