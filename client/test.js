@@ -8,19 +8,19 @@ const cliSetup = function() {
     return socket;
 };
 
-const ready = (socket) => {
-    if (!socket){
-        socket = cliSetup();
+const ready = (soc) => {
+    if (!soc){
+        soc = cliSetup();
     }
     const msg = document.getElementById("msgWin");
     msg.innerHTML = "You\'re connecting!";
     console.log("Player is readyyyy!!");
 
-    socket.emit("joinGame", {id:77});
+    soc.emit("pong", {id:77});
 };
 
-const renderClients = (socket, can, ctx) => {
-    var clients = socket._clients;
+const renderClients = (soc, can, ctx) => {
+    var clients = soc._clients;
     for (let cli in clients) {
         cli = clients[cli];
         var name = cli.id;
@@ -66,13 +66,14 @@ window.onload = () => {
         data.forEach((i) => {
             clients[i.id] = i;
             if (i.id === socket.id){
-
-                if (socket._pinged) {
-                    socket.emit("pong", i.ping);
-                }
-                else {
-                    socket._pinged = true;
-                }
+                socket.emit("pong", i.ping);
+                // if (socket._pinged) {
+                //     socket.emit("pong", i.ping);
+                //     console.log(socket.emit);
+                // }
+                // else {
+                //     socket._pinged = true;
+                // }
             }
         });
         renderStart(socket, can, ctx);
