@@ -15,6 +15,7 @@ module.exports = function(io) {
     io._initPlayer     = require("./serverActions/gameplay/initPlayer");
     io._movePlayer     = require("./serverActions/gameplay/movePlayer");
     io._clientUpdate   = require("./serverActions/clientUpdate");
+    io._getLatency     = require("./tools/medianNumber");
 
 
     //When a new user connects
@@ -44,7 +45,7 @@ module.exports = function(io) {
 
     }
 
-    io.on("pong", (data) => {
+    io.on("gamePong", (data) => {
         console.log("server pinged with:", data);
     });
 

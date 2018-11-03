@@ -1,10 +1,11 @@
 module.exports = (server, config) => {
+    const getLatency = require("../tools/medianNumber");
 
     return (socket) => {
         console.log("New connection!!", socket.id);
         const authentic = typeof socket.game === "undefined";
+
         if (authentic){
-            let getLatency = require("../tools/medianNumber");
             socket.game = require("./clientInit")(socket);
             socket.pings = [];
             socket.on("disconnecting", (data) => {
@@ -13,7 +14,7 @@ module.exports = (server, config) => {
                 server.emit("playerRemove", socket.id);
                 delete server._sockets[socket.id];
             });
-            socket.on("pong", (data) => {
+            socket.on("gamePong", (data) => {
                 console.log("server has been pinged!!", data);
                 let delta = (Date.now()  - parseInt(data))/2;
                 delta = delta < 0 ? 0 : delta;

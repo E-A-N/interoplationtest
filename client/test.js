@@ -66,7 +66,7 @@ window.onload = () => {
         data.forEach((i) => {
             clients[i.id] = i;
             if (i.id === socket.id){
-                socket.emit("pong", i.ping);
+                socket.emit("gamePong", i.ping);
                 // if (socket._pinged) {
                 //     socket.emit("pong", i.ping);
                 //     console.log(socket.emit);
