@@ -11,10 +11,17 @@ const debugArea = (parent, size) => {
 
     debug.node = ta;
     debug.showInfo = (data) => {
-        const newSize = Object.keys(data).length;
+        const textRows = Object.keys(data);
+        const newSize = textRows.length;
+        let textBlob = "";
         ta.setAttribute("rows", newSize);
-        ta.value = "hey arnold!!";
-        ta.visible = false;
+        textRows.forEach((key) => {
+            let msg = key +" = "+ data[key];
+            textBlob += msg;
+            textBlob = textBlob + "\n"
+        });
+
+        ta.value = textBlob;
     };
 
     return debug;

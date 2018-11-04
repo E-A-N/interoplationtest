@@ -1,5 +1,6 @@
 socket = null;
 var debugView;
+var data = {f:"frosty!", p:"pookie!", ei:"eddie!", ey:"eddy!"};
 const cliSetup = function() {
     //eanDebug check to see if client is connected 1st and make sure to discontinue previous connection
     const addy = "http://127.0.0.1:7777"; //eanDebug
@@ -46,7 +47,6 @@ const renderStart = (socket, can, ctx) => {
 
 window.onload = () => {
     var socket = cliSetup();
-    debugView = debugArea("appCenter", 3);
     const msg = document.getElementById("msgWin");
     const gameArea = document.getElementById("gameContainer");
     const can = document.createElement("canvas");
@@ -69,10 +69,16 @@ window.onload = () => {
             if (i.id === socket.id){
                 socket.emit("gamePong", i.ping);
             }
+            if (socket._debug){
+                debugView.showInfo(data)
+            }
         });
         renderStart(socket, can, ctx);
     });
-
+    socket.on("debugGame", (data) => {
+        debugView = debugArea("appCenter", 1);
+        socket._debug = true;
+    })
     socket.on("renderStart", (data) => {
         setInterval(function(){
             let connectionIsReady = clients[socket.id].init

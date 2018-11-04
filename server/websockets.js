@@ -43,7 +43,7 @@ module.exports = function(io) {
         }
 
     }
-
+    
     io.on("gamePong", (data) => {
         console.log("server pinged with:", data);
     });

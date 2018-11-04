@@ -24,6 +24,8 @@ module.exports = (server, config) => {
                 socket.game.latency = getLatency(socket.pings);
             });
 
+            //eanDebug comment out the below line when trying to play game with out debugging
+            server.emit("debugGame", 1);
             socket = require("./socketUpdate")(socket);
         }
         socket = server._initTimer(socket);
