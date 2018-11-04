@@ -22,5 +22,5 @@ An app that demonstrates networking synchronization and server side prediction (
 ## Helpful Resources!
 * [Fast Paced Multiplayer Articles](http://www.gabrielgambetta.com/client-server-game-architecture.html) : General Tutorial
 * [Smooth Multiplayer Gameplay Example](http://www.kinematicsoup.com/news/2017/5/30/multiplayerprediction) : General Tutorial
-* [Real Time Multiplayer Article] (http://buildnewgames.com/real-time-multiplayer/) : JS Tutorial
+* [Real Time Multiplayer Article](http://buildnewgames.com/real-time-multiplayer/) : JS Tutorial
 * [Multiplayer Online Game](http://www.dynetisgames.com/2017/03/06/how-to-make-a-multiplayer-online-game-with-phaser-socket-io-and-node-js/) : JS/Phaser Tutorial
