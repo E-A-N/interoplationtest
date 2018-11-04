@@ -6,7 +6,8 @@ const clientDebugger = (cli) => {
         e:"Eddie!",
         ey: "Eddy!"
     };
-    cli.debugNode = false;
+    cli.debugNode   = false;
+    cli.debugNodeID = "appCenter";
     cli.cliDebugInit = (parent, size) => {
         parent = typeof parent === "string" ? document.getElementById(parent) : parent;
         const textArea = document.createElement("textarea");
@@ -22,7 +23,7 @@ const clientDebugger = (cli) => {
         return cli;
     };
 
-    cli.checkDebug(data) => {
+    cli.checkDebug = (data) => {
         if (!cli.debugReady){
             return -1;
         }
@@ -54,10 +55,7 @@ const clientDebugger = (cli) => {
         return cli;
     }
 
+    //Render the debugger immediately
+    cli.cliDebugInit(cli.debugNodeID, 1);
     return cli;
 }
-
-// Example Implementation
-// const data = {f:"Frost",p:"Pookie!",e:"Eddie!",ey: "Eddy!"};
-// const debugText = debugArea(document.body, 5);
-// debutText.showInfo(data);

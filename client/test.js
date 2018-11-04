@@ -78,7 +78,6 @@ window.onload = () => {
     });
     socket.on("debugGame", (data) => {
         if (!Client.debugReady){
-            debugView = debugArea("appCenter", 1);
             Client = clientDebugger(Client);
             Client.debugReady = true;
         }
