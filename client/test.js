@@ -86,7 +86,7 @@ window.onload = () => {
     socket.on("disconnect", (data) => {
         console.log("You are disconnected!!", data);
         if (Client.debugReady){
-            Client.cliDebugDisplay();
+            Client.removeDebugDisplay();
         }
     })
     socket.on("renderStart", (data) => {

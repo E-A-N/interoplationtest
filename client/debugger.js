@@ -47,10 +47,10 @@ const clientDebugger = (cli) => {
         return cli;
     }
 
-    cli.cliDebugDisplay = (data) => {
-        cli.debugNode.parentNode.removeChild(cli.dedebugNode);
+    cli.removeDebugDisplay = (data) => {
+        cli.debugNode.parentNode.removeChild(cli.debugNode);
         cli.debugNode = -1;
-        cli.debugRead = false;
+        cli.debugReady = false;
 
         return cli;
     }
