@@ -3,8 +3,8 @@ var debugView;
 var data = {f:"frosty!", p:"pookie!", ei:"eddie!", ey:"eddy!"};
 const cliSetup = function() {
     //eanDebug check to see if client is connected 1st and make sure to discontinue previous connection
-    const addy = "http://127.0.0.1:7777"; //eanDebug
-    //const addy = "http://0.0.0.0:7777";
+    //const addy = "http://127.0.0.1:7777"; //eanDebug
+    const addy = "http://0.0.0.0:7777";
     socket = io(addy);
     socket._clients = {};
     return socket;
@@ -68,16 +68,19 @@ window.onload = () => {
             clients[i.id] = i;
             if (i.id === socket.id){
                 socket.emit("gamePong", i.ping);
+                if (socket._debug){
+                    debugView.showInfo(clients[socket.id])
+                }
             }
-            if (socket._debug){
-                debugView.showInfo(i)
-            }
+
         });
         renderStart(socket, can, ctx);
     });
     socket.on("debugGame", (data) => {
-        debugView = debugArea("appCenter", 1);
-        socket._debug = true;
+        if (!socket._debug){
+            debugView = debugArea("appCenter", 1);
+            socket._debug = true;
+        }
     });
 
     socket.on("disconnect", (data) => {
