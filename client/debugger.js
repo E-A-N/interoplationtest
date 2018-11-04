@@ -19,6 +19,7 @@ const debugArea = (parent, size) => {
     return debug;
 };
 
-const data = {f:"Frost",p:"Pookie!",e:"Eddie!",ey: "Eddy!"};
-const debugText = debugArea(document.body, 5);
-debutText.showInfo(data);
+// Example Implementation
+// const data = {f:"Frost",p:"Pookie!",e:"Eddie!",ey: "Eddy!"};
+// const debugText = debugArea(document.body, 5);
+// debutText.showInfo(data);
