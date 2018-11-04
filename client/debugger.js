@@ -1,4 +1,5 @@
 const debugArea = (parent, size) => {
+    parent = typeof parent === "string" ? document.getElementById(parent) : parent;
     const debug = {};
     const ta = document.createElement("textarea");
     ta.setAttribute("rows", size);
@@ -15,7 +16,7 @@ const debugArea = (parent, size) => {
         ta.value = "hey arnold!!";
         ta.visible = false;
     };
-  
+
     return debug;
 };
 

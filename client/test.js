@@ -1,4 +1,5 @@
 socket = null;
+var debugView;
 const cliSetup = function() {
     //eanDebug check to see if client is connected 1st and make sure to discontinue previous connection
     const addy = "http://127.0.0.1:7777"; //eanDebug
@@ -45,14 +46,14 @@ const renderStart = (socket, can, ctx) => {
 
 window.onload = () => {
     var socket = cliSetup();
-
+    debugView = debugArea("appCenter", 3);
     const msg = document.getElementById("msgWin");
     const gameArea = document.getElementById("gameContainer");
     const can = document.createElement("canvas");
     const ctx = can.getContext("2d");
     let num = 0;
-    can.height = 500;
-    can.width  = 500;
+    can.height = 300;
+    can.width  = 300;
 
     gameArea.appendChild(can);
 
