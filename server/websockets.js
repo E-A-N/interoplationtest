@@ -17,7 +17,6 @@ module.exports = function(io) {
     io._clientUpdate   = require("./serverActions/clientUpdate");
     io._getLatency     = require("./tools/medianNumber");
 
-
     //When a new user connects
     io.on("connection", onConnection);
 

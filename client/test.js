@@ -67,13 +67,6 @@ window.onload = () => {
             clients[i.id] = i;
             if (i.id === socket.id){
                 socket.emit("gamePong", i.ping);
-                // if (socket._pinged) {
-                //     socket.emit("pong", i.ping);
-                //     console.log(socket.emit);
-                // }
-                // else {
-                //     socket._pinged = true;
-                // }
             }
         });
         renderStart(socket, can, ctx);

@@ -15,13 +15,11 @@ module.exports = (server, config) => {
                 delete server._sockets[socket.id];
             });
             socket.on("gamePong", (data) => {
-                console.log("server has been pinged!!", data);
                 let delta = (Date.now()  - parseInt(data))/2;
                 delta = delta < 0 ? 0 : delta;
                 socket.pings.push(delta);
                 if (socket.pings.length > 20) {
                     socket.pings.shift();
-                    console.log(socket.pings);
                 }
                 socket.game.latency = getLatency(socket.pings);
             });
