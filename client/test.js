@@ -70,7 +70,7 @@ window.onload = () => {
                 socket.emit("gamePong", i.ping);
             }
             if (socket._debug){
-                debugView.showInfo(data)
+                debugView.showInfo(i)
             }
         });
         renderStart(socket, can, ctx);
@@ -78,6 +78,15 @@ window.onload = () => {
     socket.on("debugGame", (data) => {
         debugView = debugArea("appCenter", 1);
         socket._debug = true;
+    });
+
+    socket.on("disconnect", (data) => {
+        console.log("You are disconnected!!", data);
+        if (socket._debug && debugView){
+            debugView.node.parentNode.removeChild(debugView.node);
+            socket._debug = false;
+            debugView = false;
+        }
     })
     socket.on("renderStart", (data) => {
         setInterval(function(){
