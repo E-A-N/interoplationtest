@@ -1,31 +1,61 @@
-const debugArea = (parent, size) => {
-    parent = typeof parent === "string" ? document.getElementById(parent) : parent;
-    const debug = {};
-    const textArea = document.createElement("textarea");
-    textArea.setAttribute("rows", size);
-    textArea.setAttribute("cols", 50);
-    textArea.setAttribute("id", "serverDebug");
-    textArea.setAttribute("placeholder", "Server Debug Area");
-    textArea.setAttribute("readOnly", true);
-    parent.appendChild(textArea);
+const clientDebugger = (cli) => {
+    cli.debugReady = false;
+    cli.debugDummyData =  {
+        f:"Frost",
+        p:"Pookie!",
+        e:"Eddie!",
+        ey: "Eddy!"
+    };
+    cli.debugNode = false;
+    cli.cliDebugInit = (parent, size) => {
+        parent = typeof parent === "string" ? document.getElementById(parent) : parent;
+        const textArea = document.createElement("textarea");
+        textArea.setAttribute("rows", size);
+        textArea.setAttribute("cols", 50);
+        textArea.setAttribute("id", "serverDebug");
+        textArea.setAttribute("placeholder", "Server Debug Area");
+        textArea.setAttribute("readOnly", true);
+        parent.appendChild(textArea);
+        cli.debugNode  = textArea;
+        cli.debugReady = true;
 
-    debug.node = textArea;
-    debug.showInfo = (data) => {
+        return cli;
+    };
+
+    cli.checkDebug(data) => {
+        if (!cli.debugReady){
+            return -1;
+        }
+
+        return cli.debugDisplay(data);
+    }
+    cli.debugDisplay = (data) => {
+        //old version of showInfo()
         const textRows = Object.keys(data);
         const newSize = textRows.length;
         let textBlob = "";
-        textArea.setAttribute("rows", newSize);
+        cli.debugNode.setAttribute("rows", newSize);
+
         textRows.forEach((key) => {
             let msg = key +" = "+ data[key];
             textBlob += msg;
             textBlob = textBlob + "\n"
         });
 
-        textArea.value = textBlob;
-    };
+        cli.debugNode.value = textBlob;
+        return cli;
+    }
 
-    return debug;
-};
+    cli.cliDebugDisplay = (data) => {
+        cli.debugNode.parentNode.removeChild(cli.dedebugNode);
+        cli.debugNode = -1;
+        cli.debugRead = false;
+
+        return cli;
+    }
+
+    return cli;
+}
 
 // Example Implementation
 // const data = {f:"Frost",p:"Pookie!",e:"Eddie!",ey: "Eddy!"};

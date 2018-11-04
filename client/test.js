@@ -1,6 +1,8 @@
+var Client = {};
 socket = null;
-var debugView;
 var data = {f:"frosty!", p:"pookie!", ei:"eddie!", ey:"eddy!"};
+
+
 const cliSetup = function() {
     //eanDebug check to see if client is connected 1st and make sure to discontinue previous connection
     //const addy = "http://127.0.0.1:7777"; //eanDebug
@@ -49,6 +51,7 @@ window.onload = () => {
     var socket = cliSetup();
     const msg = document.getElementById("msgWin");
     const gameArea = document.getElementById("gameContainer");
+
     const can = document.createElement("canvas");
     const ctx = can.getContext("2d");
     let num = 0;
@@ -68,27 +71,23 @@ window.onload = () => {
             clients[i.id] = i;
             if (i.id === socket.id){
                 socket.emit("gamePong", i.ping);
-                if (socket._debug){
-                    debugView.showInfo(clients[socket.id])
-                }
-            }
-
+                Client.checkDebug(clients[socket.id]);
+            };
         });
         renderStart(socket, can, ctx);
     });
     socket.on("debugGame", (data) => {
-        if (!socket._debug){
+        if (!Client.debugReady){
             debugView = debugArea("appCenter", 1);
-            socket._debug = true;
+            Client = clientDebugger(Client);
+            Client.debugReady = true;
         }
     });
 
     socket.on("disconnect", (data) => {
         console.log("You are disconnected!!", data);
-        if (socket._debug && debugView){
-            debugView.node.parentNode.removeChild(debugView.node);
-            socket._debug = false;
-            debugView = false;
+        if (Client.debugReady){
+            Client.cliDebugDisplay();
         }
     })
     socket.on("renderStart", (data) => {
