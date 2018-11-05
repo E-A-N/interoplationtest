@@ -1,6 +1,6 @@
 const clientHistory = (cli) => {
-    cli.history = [];
-    cli.historySchema = {
+
+    var momentSchema = {
         time: 11332423230,
         state: 2,
         delta: {
@@ -10,7 +10,14 @@ const clientHistory = (cli) => {
         inputs: {},
         position: {}
     };
-    cli.
-
+    var hist = {};
+    hist.moments = [];
+    hist.removeOld = function(){
+        hist.moments.shift();
+    };
+    hist.storeMoment = function(moment){
+        hist.moments.push(moment);
+    }
+    return hist;
 
 }
