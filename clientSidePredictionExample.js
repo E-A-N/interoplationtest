@@ -1,9 +1,10 @@
-// Called when we receive a player state update from the server. 
+// Called when we receive a player state update from the server.
 function OnServerFrame(serverFrame)
 {
     // Remove frames from history until it's duration is equal to the latency.
     dt = Max(0, historyDuration - latency);
     historyDuration -= dt;
+    //history.Count is an attribute that increases but resets when the client is pinged
     while (history.Count > 0 && dt > 0)
     {
         if (dt >= history[0].DeltaTime)
@@ -28,7 +29,7 @@ function OnServerFrame(serverFrame)
     // velocity for one frame depends on the velocity of the previous
     // frame. Depending on your game you may also need
     // to do this for angular velocity or other variables.
-    if ((serverState.Velocity - history[0].Velocity).Magnitude >     
+    if ((serverState.Velocity - history[0].Velocity).Magnitude >
         velocityTolerance)
 {
         predictedState = serverState;
@@ -36,9 +37,9 @@ function OnServerFrame(serverFrame)
         {
             newState = playerController.Update(predictedState,
                 frame.DeltaTime, frame.Input);
-            frame.DeltaPosition = newState.Position - 
+            frame.DeltaPosition = newState.Position -
                 predictedState.Position;
-            frame.DeltaRotation = newState.Rotation - 
+            frame.DeltaRotation = newState.Rotation -
                 predictedState.Rotation;
             frame.Velocity = newState.Velocity;
             predictedState = newState;
