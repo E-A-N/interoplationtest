@@ -14,7 +14,8 @@ const clientHistory = (cli) => {
     };
     hist.storeMoment = function(moment){
         hist.moments.push(moment);
-    }
+    };
+    hist.lastPing = 0;
     return hist;
 
 };

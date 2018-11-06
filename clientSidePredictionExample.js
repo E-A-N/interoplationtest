@@ -29,18 +29,15 @@ function OnServerFrame(serverFrame)
     // velocity for one frame depends on the velocity of the previous
     // frame. Depending on your game you may also need
     // to do this for angular velocity or other variables.
-    if ((serverState.Velocity - history[0].Velocity).Magnitude >
-        velocityTolerance)
-{
+    if ((serverState.Velocity - history[0].Velocity).Magnitude > velocityTolerance)
+    {
         predictedState = serverState;
         foreach (frame in history)
         {
-            newState = playerController.Update(predictedState,
-                frame.DeltaTime, frame.Input);
-            frame.DeltaPosition = newState.Position -
-                predictedState.Position;
-            frame.DeltaRotation = newState.Rotation -
-                predictedState.Rotation;
+            //playerController.Update is the method for replaying inputs
+            newState = playerController.Update(predictedState,frame.DeltaTime, frame.Input);
+            frame.DeltaPosition = newState.Position - predictedState.Position;
+            frame.DeltaRotation = newState.Rotation - predictedState.Rotation;
             frame.Velocity = newState.Velocity;
             predictedState = newState;
         }
