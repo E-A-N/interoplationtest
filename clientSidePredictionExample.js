@@ -1,6 +1,8 @@
 // Called when we receive a player state update from the server.
 function OnServerFrame(serverFrame)
 {
+    //serverFrame is the last known update from the server
+
     // Remove frames from history until it's duration is equal to the latency.
     dt = Max(0, historyDuration - latency);
     historyDuration -= dt;

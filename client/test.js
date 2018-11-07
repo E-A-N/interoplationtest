@@ -1,7 +1,8 @@
 var Client = {};
 socket = null;
 var data = {f:"frosty!", p:"pookie!", ei:"eddie!", ey:"eddy!"};
-
+Client.history = clientHistory(Client);
+Client.socket  = socket;
 
 const cliSetup = function() {
     //eanDebug check to see if client is connected 1st and make sure to discontinue previous connection
