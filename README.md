@@ -26,3 +26,4 @@ An app that demonstrates networking synchronization and server side prediction (
 * [Real Time Multiplayer Article](http://buildnewgames.com/real-time-multiplayer/) : JS Tutorial
     * [Repository Example](https://github.com/underscorediscovery/realtime-multiplayer-in-html5)
 * [Multiplayer Online Game](http://www.dynetisgames.com/2017/03/06/how-to-make-a-multiplayer-online-game-with-phaser-socket-io-and-node-js/) : JS/Phaser Tutorial
+* [Pub Nub Multiplayer Game](https://www.pubnub.com/tutorials/javascript/multiplayer-game/) : JavaScript *Platformer*
