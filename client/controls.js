@@ -1,9 +1,13 @@
 
 //Be sure to only define keys once, otherwise memory leak will occur!
 
-const userController = (config) => {
-    const soc = config.socket;
-    const key;
+const userController = (self, config) => {
+    const soc = config.socket; 
+    const myInput = {};
+
+    self.initKeys = () => {
+
+    }
 
 }
 var k = {};
