@@ -2,6 +2,7 @@ var Client = {};
 socket = null;
 var data = {f:"frosty!", p:"pookie!", ei:"eddie!", ey:"eddy!"};
 Client.history = clientHistory(Client);
+Client.userControls = {};
 Client.socket  = socket;
 
 const cliSetup = function() {
@@ -22,6 +23,7 @@ const ready = (soc) => {
     console.log("Player is readyyyy!!");
 
     soc.emit("pong", {id:77});
+    return soc;
 };
 
 const renderClients = (soc, can, ctx) => {
@@ -42,10 +44,10 @@ const renderClients = (soc, can, ctx) => {
     }
 }
 
-const renderStart = (socket, can, ctx) => {
-    sendInput(socket, k);  //global function called from controls.js
+const renderStart = (soc, can, ctx) => {
+    sendInput(soc, k);  //global function called from controls.js
     ctx.clearRect(0, 0, can.width, can.height);
-    renderClients(socket, can, ctx);
+    renderClients(soc, can, ctx);
 };
 
 window.onload = () => {
