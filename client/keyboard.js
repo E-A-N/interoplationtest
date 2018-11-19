@@ -5,9 +5,9 @@
 *    @returns {object} - An object with relative keyboard input events methods
 */
 
-function keyboard(keyCode) {
+function keyboard(code) {
     var key = {};
-    key.code = keyCode;
+    key.code = code;
     key.isDown = false;
     key.isUp = true;
     key.press = undefined;

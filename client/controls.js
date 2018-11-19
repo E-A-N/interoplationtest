@@ -48,11 +48,62 @@ const sendInput = (soc, key) => {
 
 const gameControls = (config, soc) => {
     //eanDebug: build a data model that simplifies setting up dynamic inputs
+    let keyModel;
+    if (config && config.keyModel){
+        keyModel = config.keyModel;
+    }
+    else {
+        keyModel = {
+            //input : [keyCode, device]
+            "up"    : [38, "w"],
+            "down"  : [40, "s"],
+            "left"  : [37, "a"],
+            "right" : [39, "d"],
+            "action": [70, "space"]
+        }
+    }
     let inputTypes = config.inputTypes || ["up", "right", "left", "right", "action"];
     const controls = {};
 
-    inputTypes.forEach( (device) => {
-        controls[device + "Input"] = keyboard(config[device]);
+    controls.initKey = function(keyCode){
+        var key = {};
+        key.code = code;
+        key.isDown = false;
+        key.isUp = true;
+        key.press = undefined;
+        key.release = undefined;
+        //The `downHandler`
+        key.downHandler = function(event) {
+            if (event.keyCode === key.code) {
+                if (key.isUp && key.press) key.press();
+                key.isDown = true;
+                key.isUp = false;
+            }
+            event.preventDefault();
+        };
+
+        //The `upHandler`
+        key.upHandler = function(event) {
+            if (event.keyCode === key.code) {
+                if (key.isDown && key.release) key.release();
+                key.isDown = false;
+                key.isUp = true;
+            }
+            event.preventDefault();
+        };
+
+        //Attach event listeners
+        window.addEventListener(
+            "keydown", key.downHandler.bind(key), false
+        );
+        window.addEventListener(
+            "keyup", key.upHandler.bind(key), false
+        );
+        return key;
+    }
+
+    inputTypes.forEach( (deviceCode) => {
+        controls[deviceCode + "Input"] = controls.initKey(config[deviceCode]);
     });
 
     controls.checkInputs = (call) => {
