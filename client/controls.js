@@ -49,7 +49,8 @@ const sendInput = (soc, key) => {
 const gameControls = (config, soc) => {
     //eanDebug: build a data model that simplifies setting up dynamic inputs
     let keyModel;
-    if (config && config.keyModel){
+    const configExists = typeof config !== "undefined" && typeof config.keyModel !== "undefine";
+    if (configExists){
         keyModel = config.keyModel;
     }
     else {
@@ -62,10 +63,10 @@ const gameControls = (config, soc) => {
             "action": [70, "space"]
         }
     }
-    let inputTypes = config.inputTypes || ["up", "right", "left", "right", "action"];
+    let inputTypes = Object.keys(keyModel);
     const controls = {};
 
-    controls.initKey = function(keyCode){
+    controls.initKey = function(code){
         var key = {};
         key.code = code;
         key.isDown = false;
@@ -102,6 +103,7 @@ const gameControls = (config, soc) => {
         return key;
     }
 
+    //eanDebug change this loop to a for in keyModel
     inputTypes.forEach( (deviceCode) => {
         controls[deviceCode + "Input"] = controls.initKey(config[deviceCode]);
     });
