@@ -20,9 +20,7 @@ const ready = (soc) => {
     }
     const msg = document.getElementById("msgWin");
     msg.innerHTML = "You\'re connecting!";
-    console.log("Player is readyyyy!!");
 
-    soc.emit("pong", {id:77});
     return soc;
 };
 
