@@ -2,7 +2,7 @@ var Client = {};
 socket = null;
 var data = {f:"frosty!", p:"pookie!", ei:"eddie!", ey:"eddy!"};
 Client.history = clientHistory(Client);
-Client.userControls = {};
+Client.controls = {};
 Client.socket  = socket;
 
 const cliSetup = function() {
@@ -24,6 +24,7 @@ const ready = (soc) => {
     return soc;
 };
 
+//TODO: change this abstraction to "renderConnections"
 const renderClients = (soc, can, ctx) => {
     var clients = soc._clients;
     for (let cli in clients) {

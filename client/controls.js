@@ -45,3 +45,31 @@ const sendInput = (soc, key) => {
         soc.emit("socketUpdate", data);
     }
 }
+
+const gameControls = (config, soc) => {
+    //eanDebug: build a data model that simplifies setting up dynamic inputs
+    let inputTypes = config.inputTypes || ["up", "right", "left", "right", "action"];
+    const controls = {};
+
+    inputTypes.forEach( (device) => {
+        controls[device + "Input"] = keyboard(config[device]);
+    });
+
+    controls.checkInputs = (call) => {
+        const data = {};
+        let inputOccured = false;
+        inputTypes.forEach( (device) => {
+            if (controls[device].isDown){
+                data[device] = true;
+                inputOcurred = true;
+            };
+        });
+
+        if (inputOccured){
+            soc.emit("socketUpdate", data);
+        }
+        
+    };
+
+    return controls
+}
