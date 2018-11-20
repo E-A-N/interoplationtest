@@ -2,7 +2,7 @@ var Client = {};
 socket = null;
 var data = {f:"frosty!", p:"pookie!", ei:"eddie!", ey:"eddy!"};
 Client.history = clientHistory(Client);
-Client.controls = {};
+Client.controls = gameControls();
 Client.socket  = socket;
 
 const cliSetup = function() {
@@ -44,7 +44,10 @@ const renderClients = (soc, can, ctx) => {
 }
 
 const renderStart = (soc, can, ctx) => {
-    sendInput(soc, k);  //global function called from controls.js
+    Client.controls.checkInputs((data) => {
+        Client.socket.emit("socketUpdate", data);
+    })
+    //(soc, k);  //global function called from controls.js
     ctx.clearRect(0, 0, can.width, can.height);
     renderClients(soc, can, ctx);
 };

@@ -103,15 +103,13 @@ const gameControls = (config, soc) => {
         return key;
     }
 
-    //eanDebug change this loop to a for in keyModel
-    inputTypes.forEach( (deviceCode) => {
-        controls[deviceCode + "Input"] = controls.initKey(config[deviceCode]);
-    });
-
-    for (let type in keyModel){
-        let device = keyModel[type];
-        controls[type + "Input"] = controls.initKey(device[0]);
+    controls.setupKeys = () => {
+        for (let type in keyModel){
+            let device = keyModel[type];
+            controls[type + "Input"] = controls.initKey(device[0]);
+        }
     }
+    
 
     controls.checkInputs = (call) => {
         const data = {};
@@ -123,15 +121,11 @@ const gameControls = (config, soc) => {
             };
         });
 
-        if (inputOccured){
-            soc.emit("socketUpdate", data);
-        }
-
-        const inputRoutine = inputOccured && call
-        if (inputRoutine){
+        if (inputOccured && call){
             call(data);
-        }
-        
+        };
+
+        return inputOccured;
     };
 
     return controls
