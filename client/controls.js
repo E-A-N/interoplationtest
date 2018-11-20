@@ -108,6 +108,11 @@ const gameControls = (config, soc) => {
         controls[deviceCode + "Input"] = controls.initKey(config[deviceCode]);
     });
 
+    for (let type in keyModel){
+        let device = keyModel[type];
+        controls[type + "Input"] = controls.initKey(device[0]);
+    }
+
     controls.checkInputs = (call) => {
         const data = {};
         let inputOccured = false;
@@ -120,6 +125,11 @@ const gameControls = (config, soc) => {
 
         if (inputOccured){
             soc.emit("socketUpdate", data);
+        }
+
+        const inputRoutine = inputOccured && call
+        if (inputRoutine){
+            call(data);
         }
         
     };
