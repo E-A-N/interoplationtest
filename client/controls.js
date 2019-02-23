@@ -49,7 +49,7 @@ const sendInput = (soc, key) => {
 const gameControls = (config, soc) => {
     //eanDebug: build a data model that simplifies setting up dynamic inputs
     let keyModel;
-    const configExists = typeof config !== "undefined" && typeof config.keyModel !== "undefine";
+    const configExists = typeof config !== "undefined" && typeof config.keyModel !== "undefined";
     if (configExists){
         keyModel = config.keyModel;
     }
